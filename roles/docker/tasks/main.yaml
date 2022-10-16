@@ -1,0 +1,56 @@
+---
+- name: Install docker and some dependencies
+  ansible.builtin.raw: "curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun"
+  register: my_output # <- Registers the command output.
+  changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+  tags: install
+
+- name: Install python3-pip
+  ansible.builtin.apt:
+    name: python3-pip
+    state: present
+  tags: install
+
+- name: Pip install docker
+  ansible.builtin.pip:
+    name: docker
+  tags: install
+
+
+- name: Create Mysql container
+  community.docker.docker_container:
+    name: mysql
+    image: mysql
+    state: started
+    recreate: true
+  tags: mysql
+
+- name: Create nginx container
+  community.docker.docker_container:
+    name: nginx4
+    image: nginx
+    state: started
+    recreate: true
+    interactive: true
+    published_ports:
+      - "8872:80"
+  tags: nginx
+
+- name: Install docker and some dependencies
+  ansible.builtin.raw: "docker logs nginx4 "
+  tags: logs
+  changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+
+- name: Run the equivalent of "apt-get clean" as a separate step
+  ansible.builtin.apt:
+    clean: true
+
+- name: "add root id_rsa.pub to authorized_key"
+  authorized_key:
+    user: huzhenwei
+    key: "{{ lookup('file', '/root/.ssh/id_rsa.pub')}}"
+    path: "/home/huzhenwei/.ssh/authorized_keys"
+    manage_dir: yes
+    state: present
+    exclusive: no
+  tags: ssh-copy-id_root
