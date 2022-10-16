@@ -8,7 +8,7 @@
         name: hello
 
     - name: Import the example role
-      ansible.builtin.import_tasks: /workspaces/webpack3/ansible/roles/docker/tasks/main.yaml
+      ansible.builtin.import_tasks: roles/docker/tasks/main.yaml
       tags: installdocker
 
 
@@ -21,5 +21,5 @@
         name: hello
 
     - name: Import the example role
-      ansible.builtin.import_tasks: /workspaces/webpack3/ansible/roles/docker/tasks/main.yaml
+      ansible.builtin.import_tasks: roles/docker/tasks/main.yaml
       tags: installdocker

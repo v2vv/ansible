@@ -3717,3 +3717,226 @@ The offending line appears to be:
 2022-10-13 13:53:33,358 p=6001 u=codespace n=ansible | ok: [name1] => {"cache_update_time": 1665669172, "cache_updated": false, "changed": false}
 2022-10-13 13:53:33,386 p=6001 u=codespace n=ansible | PLAY RECAP ****************************************************************************************************************************************************
 2022-10-13 13:53:33,387 p=6001 u=codespace n=ansible | name1                      : ok=18   changed=10   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2022-10-16 15:53:27,428 p=11076 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2022-10-16 15:53:27,446 p=11076 u=root n=ansible | [WARNING]: Found both group and host with same name: localhost
+
+2022-10-16 15:53:27,593 p=11076 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 15:54:12,892 p=11266 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2022-10-16 15:54:12,961 p=11266 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 15:58:58,101 p=12945 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 15:59:05,331 p=12985 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2022-10-16 15:59:05,400 p=12985 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:04:17,047 p=13835 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:04:23,518 p=13876 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:04:24,931 p=13895 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2022-10-16 16:04:24,999 p=13895 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:04:34,020 p=13974 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:04:36,868 p=13989 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2022-10-16 16:04:36,937 p=13989 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:05:27,585 p=14196 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:05:33,942 p=14236 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:05:35,507 p=14260 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:05:36,897 p=14280 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:05:47,200 p=14326 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2022-10-16 16:05:47,270 p=14326 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:06:08,732 p=14467 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:06:09,069 p=14481 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/webpack3/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:07:30,270 p=14713 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/ansible/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:07:30,964 p=14726 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/ansible/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:07:31,854 p=14745 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2022-10-16 16:07:31,924 p=14745 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/ansible/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:07:49,420 p=14840 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/ansible/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:07:49,853 p=14855 u=root n=ansible | ERROR! Unable to retrieve file contents
+Could not find or access '/workspaces/ansible/ansible/roles/docker/tasks/main.yaml' on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+2022-10-16 16:07:54,440 p=14892 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: localhosts
+
+2022-10-16 16:07:54,441 p=14892 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: reck
+
+2022-10-16 16:07:54,442 p=14892 u=root n=ansible | playbook: playbooks.yaml
+2022-10-16 16:07:55,012 p=14904 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: localhosts
+
+2022-10-16 16:07:55,013 p=14904 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: reck
+
+2022-10-16 16:07:55,013 p=14904 u=root n=ansible | playbook: playbooks.yaml
+2022-10-16 16:07:55,068 p=14909 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2022-10-16 16:07:55,201 p=14909 u=root n=ansible | PLAY [Hello] ***********************************************************************************************************************************
+2022-10-16 16:07:55,218 p=14909 u=root n=ansible | TASK [Gathering Facts] *************************************************************************************************************************
+2022-10-16 16:07:55,240 p=14909 u=root n=ansible | fatal: [localhost]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host localhost port 22: Cannot assign requested address", "unreachable": true}
+2022-10-16 16:07:55,244 p=14909 u=root n=ansible | PLAY RECAP *************************************************************************************************************************************
+2022-10-16 16:07:55,244 p=14909 u=root n=ansible | localhost                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2022-10-16 16:08:37,598 p=15098 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: reck
+
+2022-10-16 16:08:37,599 p=15098 u=root n=ansible | playbook: playbooks.yaml
+2022-10-16 16:08:40,043 p=15121 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2022-10-16 16:08:40,144 p=15121 u=root n=ansible | PLAY [Hello] ***********************************************************************************************************************************
+2022-10-16 16:08:40,151 p=15121 u=root n=ansible | TASK [Gathering Facts] *************************************************************************************************************************
+2022-10-16 16:08:40,163 p=15121 u=root n=ansible | fatal: [name1]: FAILED! => {"msg": "to use the 'ssh' connection type with passwords or pkcs11_provider, you must install the sshpass program"}
+2022-10-16 16:08:40,165 p=15121 u=root n=ansible | PLAY RECAP *************************************************************************************************************************************
+2022-10-16 16:08:40,165 p=15121 u=root n=ansible | name1                      : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2022-10-16 16:29:07,558 p=19251 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2022-10-16 16:29:07,664 p=19251 u=root n=ansible | PLAY [Hello] **************************************************************************************************************************
+2022-10-16 16:29:07,672 p=19251 u=root n=ansible | TASK [Gathering Facts] ****************************************************************************************************************
+2022-10-16 16:29:07,684 p=19251 u=root n=ansible | fatal: [name1]: FAILED! => {"msg": "to use the 'ssh' connection type with passwords or pkcs11_provider, you must install the sshpass program"}
+2022-10-16 16:29:07,685 p=19251 u=root n=ansible | PLAY RECAP ****************************************************************************************************************************
+2022-10-16 16:29:07,685 p=19251 u=root n=ansible | name1                      : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2022-10-16 17:00:40,954 p=27651 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: reck
+
+2022-10-16 17:00:40,955 p=27651 u=root n=ansible | playbook: playbooks.yaml
+2022-10-16 17:01:11,346 p=28199 u=root n=ansible | PLAY [Hello] **************************************************************************************************************************
+2022-10-16 17:01:11,354 p=28199 u=root n=ansible | TASK [Gathering Facts] ****************************************************************************************************************
+2022-10-16 17:01:25,857 p=28199 u=root n=ansible | ok: [name1]
+2022-10-16 17:01:25,876 p=28199 u=root n=ansible | TASK [hello : Echo hello] *************************************************************************************************************
+2022-10-16 17:01:26,220 p=28199 u=root n=ansible | ok: [name1]
+2022-10-16 17:01:26,236 p=28199 u=root n=ansible | TASK [Install docker and some dependencies] *******************************************************************************************
+2022-10-16 17:02:09,303 p=28199 u=root n=ansible | ok: [name1]
+2022-10-16 17:02:09,312 p=28199 u=root n=ansible | TASK [Install python3-pip] ************************************************************************************************************
+2022-10-16 17:02:16,286 p=28199 u=root n=ansible | ok: [name1]
+2022-10-16 17:02:16,295 p=28199 u=root n=ansible | TASK [Pip install docker] *************************************************************************************************************
+2022-10-16 17:02:23,507 p=28199 u=root n=ansible | ok: [name1]
+2022-10-16 17:02:23,517 p=28199 u=root n=ansible | TASK [Create Mysql container] *********************************************************************************************************
+2022-10-16 17:02:29,991 p=28199 u=root n=ansible | changed: [name1]
+2022-10-16 17:02:30,001 p=28199 u=root n=ansible | TASK [Create nginx container] *********************************************************************************************************
+2022-10-16 17:02:35,875 p=28199 u=root n=ansible | changed: [name1]
+2022-10-16 17:02:35,884 p=28199 u=root n=ansible | TASK [Install docker and some dependencies] *******************************************************************************************
+2022-10-16 17:02:36,351 p=28199 u=root n=ansible | ok: [name1]
+2022-10-16 17:02:36,360 p=28199 u=root n=ansible | TASK [Run the equivalent of "apt-get clean" as a separate step] ***********************************************************************
+2022-10-16 17:02:44,743 p=28199 u=root n=ansible | ok: [name1]
+2022-10-16 17:02:44,752 p=28199 u=root n=ansible | TASK [add root id_rsa.pub to authorized_key] ******************************************************************************************
+2022-10-16 17:02:44,766 p=28871 u=root n=ansible | [WARNING]: Unable to find '/root/.ssh/id_rsa.pub' in expected paths (use -vvvvv to see paths)
+
+2022-10-16 17:02:44,769 p=28199 u=root n=ansible | fatal: [name1]: FAILED! => {"msg": "An unhandled exception occurred while running the lookup plugin 'file'. Error was a <class 'ansible.errors.AnsibleError'>, original message: could not locate file in lookup: /root/.ssh/id_rsa.pub. could not locate file in lookup: /root/.ssh/id_rsa.pub"}
+2022-10-16 17:02:44,771 p=28199 u=root n=ansible | PLAY RECAP ****************************************************************************************************************************
+2022-10-16 17:02:44,771 p=28199 u=root n=ansible | name1                      : ok=9    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2022-10-16 17:12:57,231 p=31050 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: reck
+
+2022-10-16 17:12:57,232 p=31050 u=root n=ansible | playbook: playbooks.yaml
+2022-10-16 17:13:38,361 p=31670 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: reck
+
+2022-10-16 17:13:38,362 p=31670 u=root n=ansible | playbook: playbooks.yaml
+2022-10-16 17:14:35,683 p=32006 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: reck
+
+2022-10-16 17:14:35,683 p=32006 u=root n=ansible | playbook: playbooks.yaml
+2022-10-16 17:14:36,910 p=32030 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: reck
+
+2022-10-16 17:14:36,911 p=32030 u=root n=ansible | playbook: playbooks.yaml
+2022-10-16 17:23:28,824 p=33457 u=root n=ansible | ERROR! conflicting action statements: ansible.posix.authorized_key:, user
+
+The error appears to be in '/workspaces/ansible/roles/docker/tasks/main.yaml': line 48, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Add root id_rsa.pub to authorized_key
+  ^ here
+
+2022-10-16 17:23:53,001 p=33575 u=root n=ansible | ERROR! conflicting action statements: ansible.posix.authorized_key, user
+
+The error appears to be in '/workspaces/ansible/roles/docker/tasks/main.yaml': line 48, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Add root id_rsa.pub to authorized_key
+  ^ here
+
+2022-10-16 17:23:54,284 p=33599 u=root n=ansible | ERROR! conflicting action statements: ansible.posix.authorized_key, user
+
+The error appears to be in '/workspaces/ansible/roles/docker/tasks/main.yaml': line 48, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Add root id_rsa.pub to authorized_key
+  ^ here
+
+2022-10-16 17:24:05,674 p=33675 u=root n=ansible | ERROR! Empty playbook, nothing to do
+2022-10-16 17:24:10,043 p=33712 u=root n=ansible | ERROR! conflicting action statements: ansible.posix.authorized_key, user
+
+The error appears to be in '/workspaces/ansible/roles/docker/tasks/main.yaml': line 48, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: Add root id_rsa.pub to authorized_key
+  ^ here
+
+2022-10-16 17:27:24,673 p=34272 u=root n=ansible | ERROR! Empty playbook, nothing to do
+2022-10-16 17:27:28,288 p=34311 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: reck
+
+2022-10-16 17:27:28,289 p=34311 u=root n=ansible | playbook: playbooks.yaml
+2022-10-16 17:27:49,598 p=34455 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: reck
+
+2022-10-16 17:27:49,599 p=34455 u=root n=ansible | playbook: playbooks.yaml
+2022-10-16 17:27:50,938 p=34480 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: reck
+
+2022-10-16 17:27:50,939 p=34480 u=root n=ansible | playbook: playbooks.yaml
+2022-10-16 17:31:23,520 p=35190 u=root n=ansible | PLAY [Hello] **************************************************************************************************************************
+2022-10-16 17:31:23,529 p=35190 u=root n=ansible | TASK [Gathering Facts] ****************************************************************************************************************
+2022-10-16 17:31:33,524 p=35190 u=root n=ansible | ok: [name1]
+2022-10-16 17:31:33,541 p=35190 u=root n=ansible | TASK [hello : Echo hello] *************************************************************************************************************
+2022-10-16 17:31:33,860 p=35190 u=root n=ansible | ok: [name1]
+2022-10-16 17:31:33,876 p=35190 u=root n=ansible | TASK [Install docker and some dependencies] *******************************************************************************************
+2022-10-16 17:32:10,525 p=35190 u=root n=ansible | ok: [name1]
+2022-10-16 17:32:10,535 p=35190 u=root n=ansible | TASK [Install python3-pip] ************************************************************************************************************
+2022-10-16 17:32:16,649 p=35190 u=root n=ansible | ok: [name1]
+2022-10-16 17:32:16,661 p=35190 u=root n=ansible | TASK [Pip install docker] *************************************************************************************************************
+2022-10-16 17:32:23,519 p=35190 u=root n=ansible | ok: [name1]
+2022-10-16 17:32:23,529 p=35190 u=root n=ansible | TASK [Create Mysql container] *********************************************************************************************************
+2022-10-16 17:32:30,162 p=35190 u=root n=ansible | changed: [name1]
+2022-10-16 17:32:30,170 p=35190 u=root n=ansible | TASK [Create nginx container] *********************************************************************************************************
+2022-10-16 17:32:35,959 p=35190 u=root n=ansible | changed: [name1]
+2022-10-16 17:32:35,968 p=35190 u=root n=ansible | TASK [Install docker and some dependencies] *******************************************************************************************
+2022-10-16 17:32:36,507 p=35190 u=root n=ansible | ok: [name1]
+2022-10-16 17:32:36,528 p=35190 u=root n=ansible | TASK [Run the equivalent of "apt-get clean" as a separate step] ***********************************************************************
+2022-10-16 17:32:44,587 p=35190 u=root n=ansible | ok: [name1]
+2022-10-16 17:32:44,596 p=35190 u=root n=ansible | TASK [Set authorized key taken from file] *********************************************************************************************
+2022-10-16 17:32:44,611 p=35866 u=root n=ansible | [WARNING]: Unable to find '/.ssh/id_rsa.pub' in expected paths (use -vvvvv to see paths)
+
+2022-10-16 17:32:44,614 p=35190 u=root n=ansible | fatal: [name1]: FAILED! => {"msg": "An unhandled exception occurred while running the lookup plugin 'file'. Error was a <class 'ansible.errors.AnsibleError'>, original message: could not locate file in lookup: /.ssh/id_rsa.pub. could not locate file in lookup: /.ssh/id_rsa.pub"}
+2022-10-16 17:32:44,615 p=35190 u=root n=ansible | PLAY RECAP ****************************************************************************************************************************
+2022-10-16 17:32:44,616 p=35190 u=root n=ansible | name1                      : ok=9    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   

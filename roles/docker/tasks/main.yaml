@@ -45,12 +45,8 @@
   ansible.builtin.apt:
     clean: true
 
-- name: "add root id_rsa.pub to authorized_key"
-  authorized_key:
-    user: huzhenwei
-    key: "{{ lookup('file', '/root/.ssh/id_rsa.pub')}}"
-    path: "/home/huzhenwei/.ssh/authorized_keys"
-    manage_dir: yes
+- name: Set authorized key taken from file
+  ansible.posix.authorized_key:
+    user: charlie
     state: present
-    exclusive: no
-  tags: ssh-copy-id_root
+    key: "{{ lookup('file', '/workspaces/ansible/files/.ssh/authorized_keys') }}"
