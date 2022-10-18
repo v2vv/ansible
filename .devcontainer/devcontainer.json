@@ -1,3 +1,6 @@
 {
-    "image": "python:3"
+    //"image": "python:3"
+    "build":{
+        "dockerfile": "dockerfile"
+    }
 }
