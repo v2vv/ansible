@@ -4,4 +4,5 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && gg config -w subscription=https://xn--5hqx9equq.com/api/v1/client/subscribe?token=e87ad20e1f17567da8b216b5d4543109 \
     && gg apt-get install -y sshpass \
     && gg pip3 install ansible \
-    ansible-lint
+    ansible-lint \
+    && apt-get clean -y
