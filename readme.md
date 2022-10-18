@@ -20,3 +20,6 @@ https://github.com/mzz2017/gg/blob/main/README_zh.md
 
 $ git config --global user.name "lvhongyuan"  #名称
 $ git config --global user.email v2vvcn@gmail.com   #邮箱
+
+
+git push commod `gg git push --set-upstream origin devtest`
