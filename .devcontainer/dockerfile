@@ -1,6 +1,5 @@
 FROM python:3
-RUN apt install apt-transport-https ca-certificates\n \
-    && echo deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free\n \
+RUN echo deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free\n \
     deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free\n \
     deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-free\n \
     deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free\n \
