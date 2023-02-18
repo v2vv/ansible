@@ -17,6 +17,7 @@ https://github.com/mzz2017/gg/blob/main/README_zh.md
 
 `ansible-playbook playbooks.yaml -v# ansible`
 
+chmod u+x,g-wx,o-wx ansible
 
 $ git config --global user.name "lvhongyuan"  #名称
 $ git config --global user.email v2vvcn@gmail.com   #邮箱
