@@ -12,14 +12,14 @@
       tags: installdocker
 
 
-- name: Hello2
-  hosts: reck
-  remote_user: root
-  tasks:
-    - name: Import the example
-      ansible.builtin.import_role:
-        name: hello
+# - name: Hello2
+#   hosts: reck
+#   remote_user: root
+#   tasks:
+#     - name: Import the example
+#       ansible.builtin.import_role:
+#         name: hello
 
-    - name: Import the example role
-      ansible.builtin.import_tasks: roles/docker/tasks/main.yaml
-      tags: installdocker
+#     - name: Import the example role
+#       ansible.builtin.import_tasks: roles/docker/tasks/main.yaml
+#       tags: installdocker
