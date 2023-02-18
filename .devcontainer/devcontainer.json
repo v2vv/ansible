@@ -1,3 +1,4 @@
 {
-    "image": "python:3"
+    "image": "python:3",
+    "postAttachCommand": "apt update && apt install sshpass && pip install ansible && chmod u+x,g-wx,o-wx ../ansible"
 }

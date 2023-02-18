@@ -1,8 +1,2 @@
 [reck]
-name1 ansible_ssh_host=107.172.217.53 ansible_ssh_user="root" ansible_ssh_pass="lvhongyuan" 
-
-[tencent]
-name2 ansible_ssh_host=150.158.103.241 ansible_ssh_user="root" ansible_ssh_pass="lvhongyuan-123" 
-
-[localhosts]
-localhost
+name1 ansible_ssh_host=107.172.29.188 ansible_ssh_user="root" ansible_ssh_pass="lvhongyuan" 
