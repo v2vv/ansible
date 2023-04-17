@@ -1,6 +1,6 @@
 ---
 - name: Hello
-  hosts: reck
+  hosts: name2
   remote_user: root
   tasks:
     - name: Import the example
@@ -11,6 +11,9 @@
       ansible.builtin.import_tasks: roles/docker/tasks/main.yaml
       tags: installdocker
 
+    - name: Up authorized Public key
+      ansible.builtin.import_tasks: roles/authorized/tasks/main.yaml
+      tags: authorized
 
 # - name: Hello2
 #   hosts: reck

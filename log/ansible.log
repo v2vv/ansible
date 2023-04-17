@@ -3976,3 +3976,20 @@ The offending line appears to be:
 2023-02-18 07:20:25,619 p=4105 u=root n=ansible | fatal: [name1]: FAILED! => {"changed": false, "msg": "Failed to lookup user charlie: \"getpwnam(): name not found: 'charlie'\""}
 2023-02-18 07:20:25,621 p=4105 u=root n=ansible | PLAY RECAP ***********************************************************************************************************************
 2023-02-18 07:20:25,622 p=4105 u=root n=ansible | name1                      : ok=9    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-04-17 05:51:53,581 p=6098 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2023-04-17 05:51:53,985 p=6098 u=root n=ansible | PLAY [Hello] *******************************************************************************************************************************************************************
+2023-04-17 05:51:54,004 p=6098 u=root n=ansible | TASK [Gathering Facts] *********************************************************************************************************************************************************
+2023-04-17 05:52:54,085 p=6098 u=root n=ansible | fatal: [name1]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 107.172.29.188 port 22: Connection timed out", "unreachable": true}
+2023-04-17 05:52:54,087 p=6098 u=root n=ansible | PLAY RECAP *********************************************************************************************************************************************************************
+2023-04-17 05:52:54,087 p=6098 u=root n=ansible | name1                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2023-04-17 05:58:31,003 p=8564 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2023-04-17 05:58:31,119 p=8564 u=root n=ansible | PLAY [Hello] *******************************************************************************************************************************************************************
+2023-04-17 05:58:31,130 p=8564 u=root n=ansible | TASK [Gathering Facts] *********************************************************************************************************************************************************
+2023-04-17 05:58:54,383 p=8564 u=root n=ansible |  [ERROR]: User interrupted execution
+
+2023-04-17 05:59:26,613 p=8994 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2023-04-17 05:59:26,727 p=8994 u=root n=ansible | PLAY [Hello] *******************************************************************************************************************************************************************
+2023-04-17 05:59:26,739 p=8994 u=root n=ansible | TASK [Gathering Facts] *********************************************************************************************************************************************************
+2023-04-17 06:00:26,899 p=8994 u=root n=ansible | fatal: [name22]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 105.177.80.200 port 22: Connection timed out", "unreachable": true}
+2023-04-17 06:00:26,902 p=8994 u=root n=ansible | PLAY RECAP *********************************************************************************************************************************************************************
+2023-04-17 06:00:26,902 p=8994 u=root n=ansible | name22                     : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
