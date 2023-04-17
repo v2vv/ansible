@@ -56,8 +56,8 @@
   ansible.builtin.apt:
     clean: true
 
-- name: Set authorized key taken from file
-  ansible.posix.authorized_key:
-    user: root
-    state: present
-    key: "{{ lookup('file', '/workspaces/ansible/files/.ssh/authorized_keys') }}"
+# - name: Set authorized key taken from file
+#   ansible.posix.authorized_key:
+#     user: root
+#     state: present
+#     key: "{{ lookup('file', '/workspaces/ansible/files/.ssh/authorized_keys') }}"
