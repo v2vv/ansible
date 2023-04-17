@@ -38,3 +38,7 @@ warn dangrous
 
 安装 docker
 `ansible-playbook playbooks.yaml -vv --tags installdocker`
+
+roles 安装 vscodetunnel
+
+`ansible-playbook playbooks.yaml -vv --tags vscodetunnel`
