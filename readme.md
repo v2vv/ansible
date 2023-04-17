@@ -21,3 +21,13 @@ chmod u+x,g-wx,o-wx ansible
 
 $ git config --global user.name "lvhongyuan"  #名称
 $ git config --global user.email v2vvcn@gmail.com   #邮箱
+
+
+
+将公钥添加到kvm中
+`ansible-playbook playbooks.yaml -v --tags authorized`
+
+添加私钥到 cosdspace /root/.ssh
+
+`cp /workspaces/ansible/files/.ssh/id_rsa /root/.ssh && chmod 600 /root/.ssh/id_rsa `
+
