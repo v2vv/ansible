@@ -16,8 +16,6 @@
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
   tags: install
 
-
-  ---
 - name: Show docker Verson
   ansible.builtin.raw: docker -v
   register: my_output # <- Registers the command output.

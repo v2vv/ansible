@@ -30,7 +30,7 @@ $ git config --global user.email v2vvcn@gmail.com   #邮箱
 warn dangrous
 添加私钥到 cosdspace /root/.ssh 
 
-`cp /workspaces/ansible/files/.ssh/id_rsa /root/.ssh && chmod 600 /root/.ssh/id_rsa `
+`cp /workspaces/ansible/config/.ssh/id_rsa /root/.ssh && chmod 600 /root/.ssh/id_rsa `
 
 安装 docker
 `ansible-playbook playbooks.yaml -vv --tags installdocker`
