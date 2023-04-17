@@ -7,7 +7,7 @@ https://github.com/mzz2017/gg/blob/main/README_zh.md
 安装语法检查器
 `pip install ansible-lint`
 执行 playbook
-`ansible-playbook playbooks.yaml -v ` 
+`ansible-playbook playbooks.yaml -v ` // 显示详细log -vv -vvv
                                                                                                     
 `apt updte`
 

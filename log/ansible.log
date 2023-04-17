@@ -3993,3 +3993,9 @@ The offending line appears to be:
 2023-04-17 06:00:26,899 p=8994 u=root n=ansible | fatal: [name22]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 105.177.80.200 port 22: Connection timed out", "unreachable": true}
 2023-04-17 06:00:26,902 p=8994 u=root n=ansible | PLAY RECAP *********************************************************************************************************************************************************************
 2023-04-17 06:00:26,902 p=8994 u=root n=ansible | name22                     : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2023-04-17 06:05:03,309 p=11531 u=root n=ansible | Using /workspaces/ansible/ansible.cfg as config file
+2023-04-17 06:05:03,425 p=11531 u=root n=ansible | PLAY [Hello] *******************************************************************************************************************************************************************
+2023-04-17 06:05:03,435 p=11531 u=root n=ansible | TASK [Gathering Facts] *********************************************************************************************************************************************************
+2023-04-17 06:05:13,478 p=11531 u=root n=ansible | ok: [name22]
+2023-04-17 06:05:13,514 p=11531 u=root n=ansible | PLAY RECAP *********************************************************************************************************************************************************************
+2023-04-17 06:05:13,515 p=11531 u=root n=ansible | name22                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
