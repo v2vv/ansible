@@ -2,4 +2,4 @@
   ansible.posix.authorized_key:
     user: root
     state: present
-    key: "{{ lookup('file', '/workspaces/ansible/files/.ssh/authorized_keys') }}"
+    key: "{{ lookup('file', '/workspaces/ansible/config/.ssh/authorized_keys') }}"
