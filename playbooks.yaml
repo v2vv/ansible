@@ -16,7 +16,7 @@
       tags: authorized
 
     - name: run vscode tunnel
-      ansible.builtin.import_tasks: /workspaces/ansible/roles/vscodeTunnel/tasks/main.yaml
+      ansible.builtin.import_tasks: roles/vscodeTunnel/tasks/main.yaml
       tags: vscodetunnel
 
 
