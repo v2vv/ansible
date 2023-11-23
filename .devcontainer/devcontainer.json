@@ -1,4 +1,4 @@
 {
-    "image": "python:3",
-    "postAttachCommand": "apt update && apt install sshpass && pip install ansible && chmod u+x,g-wx,o-wx ../ansible"
+    "image": "honyua/ansible_py:v0.1",
+    "postAttachCommand": "chmod u+x,g-wx,o-wx ../ansible"
 }

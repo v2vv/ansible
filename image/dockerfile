@@ -1,0 +1,5 @@
+FROM python:3
+
+RUN apt update && apt install sshpass && pip install ansible
+
+CMD [ "/bin/bash","-c","tail -f /dev/null" ]
