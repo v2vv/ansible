@@ -9,6 +9,6 @@ jobs:
       - name: hello
         run: echo hello
       - name: prepare ansible
-        run: apt update && apt install sshpass && pip install ansible
+        run: sudo apt update && apt install sshpass && pip install ansible
       - name: run ansible playbooks
         run: echo hello
