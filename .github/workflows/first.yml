@@ -13,4 +13,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: run ansible playbooks
-        run: pwd && ansible-playbook playbooks.yaml -vvv --tags hello
+        run: pwd && ls && ansible-playbook playbooks.yaml -vvv --tags hello
