@@ -6,6 +6,7 @@
     - name: Import the example
       ansible.builtin.import_role:
         name: hello
+      tags: hello
 
     - name: Import the example role
       ansible.builtin.import_tasks: roles/docker/tasks/main.yaml
