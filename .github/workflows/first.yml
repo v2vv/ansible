@@ -10,7 +10,9 @@ jobs:
       steps:
       - name: hello
         run: echo hello
-      - name: prepare ansible
-        run: apt update && apt install sshpass && pip install ansible
+      - name: check ansible version
+        run: ansible -v
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: run ansible playbooks
         run: ansible-playbook playbooks.yaml -vvv --tags hello
