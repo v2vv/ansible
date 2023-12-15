@@ -1,1 +1,12 @@
+name: ansible
+on: push
 
+jobs:
+   job1:
+      runs-on: ubuntu
+      name: echo
+      steps:
+      - name: hello
+        run: echo hello
+      
+      
