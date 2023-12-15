@@ -5,7 +5,7 @@ jobs:
    job1:
       runs-on: ubuntu-latest
       container:
-       image: honyua/ansible_py
+       image: honyua/ansible_py:v0.1
       name: echo
       steps:
       - name: hello
