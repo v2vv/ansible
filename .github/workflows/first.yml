@@ -4,11 +4,13 @@ on: push
 jobs:
    job1:
       runs-on: ubuntu-latest
+      container:
+       image: honyua/ansible_py
       name: echo
       steps:
       - name: hello
         run: echo hello
       - name: prepare ansible
-        run: sudo apt update && apt install sshpass && pip install ansible
+        run: apt update && apt install sshpass && pip install ansible
       - name: run ansible playbooks
         run: echo hello
