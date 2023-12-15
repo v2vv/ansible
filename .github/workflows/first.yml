@@ -8,6 +8,7 @@ jobs:
       steps:
       - name: hello
         run: echo hello
-      - name: hello2
-        run: echo hello2
-      
+      - name: prepare ansible
+        run: apt update && apt install sshpass && pip install ansible
+      - name: run ansible playbooks
+        run: echo hello
