@@ -3,7 +3,7 @@ on: push
 
 jobs:
    job1:
-      runs-on: ubuntu
+      runs-on: ubuntu-latest
       name: echo
       steps:
       - name: hello
