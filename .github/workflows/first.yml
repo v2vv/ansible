@@ -8,5 +8,6 @@ jobs:
       steps:
       - name: hello
         run: echo hello
-      
+      - name: hello2
+        run: echo hello2
       
