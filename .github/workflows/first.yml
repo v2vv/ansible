@@ -13,4 +13,4 @@ jobs:
       - name: prepare ansible
         run: apt update && apt install sshpass && pip install ansible
       - name: run ansible playbooks
-        run: echo hello
+        run: ansible-playbook playbooks.yaml -vvv --tags hello
