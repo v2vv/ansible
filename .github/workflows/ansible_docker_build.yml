@@ -2,8 +2,9 @@ name: ansible_build
 on:
   push:
     paths:
-     - 'dockerfile'
-     - 'ansible_docker_build.yml'
+      - 'image/dockerfile'
+      - '.github/workflows/ansible_docker_build.yml'
+
 jobs:
  build:
   runs-on: ubuntu-latest 
