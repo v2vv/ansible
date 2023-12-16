@@ -1,0 +1,18 @@
+name: auto-ansible-runner
+on:
+  push:
+    branches: runner
+    paths-ignore:
+      - 'image/dockerfile'
+      - '.github/workflows/ansible_docker_build.yml'
+
+jobs:
+  runs:
+    runs-on: ubuntu-latest 
+    name: runs
+    steps: 
+      - name: run
+        run: ansible-runner run ./ -p playbooks.yaml 
+
+      
+
