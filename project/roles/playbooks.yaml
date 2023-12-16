@@ -1,0 +1,34 @@
+---
+- name: Hello
+  hosts: name2
+  remote_user: root
+  tasks:
+    - name: Import the example
+      ansible.builtin.import_role:
+        name: hello
+      tags: hello
+
+    - name: Import the example role
+      ansible.builtin.import_tasks: roles/docker/tasks/main.yaml
+      tags: installdocker
+
+    - name: Up authorized Public key
+      ansible.builtin.import_tasks: roles/authorized/tasks/main.yaml
+      tags: authorized
+
+    - name: run vscode tunnel
+      ansible.builtin.import_tasks: roles/vscodeTunnel/tasks/main.yaml
+      tags: vscodetunnel
+
+
+# - name: Hello2
+#   hosts: reck
+#   remote_user: root
+#   tasks:
+#     - name: Import the example
+#       ansible.builtin.import_role:
+#         name: hello
+
+#     - name: Import the example role
+#       ansible.builtin.import_tasks: roles/docker/tasks/main.yaml
+#       tags: installdocker

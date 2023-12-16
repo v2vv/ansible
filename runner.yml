@@ -1,0 +1,7 @@
+---
+ansible_runner:
+  # 必须配置项
+  private_data_dir: ./
+  # 如果不配置artifact_dir，会在 private_data_dir 目录下自动创建 artifacts目录
+  
+  rotate_artifacts: 10
