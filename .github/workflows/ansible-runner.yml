@@ -9,7 +9,9 @@ on:
 jobs:
   runs:
     runs-on: ubuntu-latest 
-    name: runs
+    container:
+       image: honyua/ansible_py:v0.1
+    name: runner runs
     steps: 
       - name: run
         run: ansible-runner run ./ -p playbooks.yaml 
