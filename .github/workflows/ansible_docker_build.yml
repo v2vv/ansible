@@ -1,4 +1,4 @@
-name: ansible build
+name: ansible_build
 on:
   push:
     paths:
