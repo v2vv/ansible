@@ -1,4 +1,4 @@
 {
-    "image": "honyua/ansible_py:v0.1",
+    "image": "honyua/ansible_py:v0.2",
     "postAttachCommand": "chmod u+x,g-wx,o-wx ../ansible"
 }
