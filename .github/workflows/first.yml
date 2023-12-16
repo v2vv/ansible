@@ -6,7 +6,7 @@ jobs:
       runs-on: ubuntu-latest
       container:
        image: honyua/ansible_py:v0.1
-      name: echo
+      name: 运行ansible
       steps:
       - name: Checkout
         uses: actions/checkout@v4
