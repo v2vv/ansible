@@ -1,5 +1,9 @@
 name: ansible
-on: push
+on:
+  push:
+    paths-ignore:
+      - 'dockerfile'
+      - 'ansible_docker_build.yml'
 
 jobs:
    job1:
