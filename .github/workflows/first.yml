@@ -2,8 +2,8 @@ name: ansible
 on:
   push:
     paths-ignore:
-      - 'dockerfile'
-      - 'ansible_docker_build.yml'
+      - 'image/dockerfile'
+      - '.github/workflows/ansible_docker_build.yml'
 
 jobs:
    job1:
