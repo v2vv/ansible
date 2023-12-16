@@ -1,4 +1,4 @@
-name: ansible
+4name: ansible
 on: push
 
 jobs:
@@ -8,9 +8,7 @@ jobs:
        image: honyua/ansible_py:v0.1
       name: echo
       steps:
-      - name: hello
-        run: echo hello
       - name: Checkout
         uses: actions/checkout@v4
       - name: run ansible playbooks
-        run: pwd && ls && chmod u+x,g-wx,o-wx ../ansible&& ansible-playbook playbooks.yaml --tags installdocker --list-tasks
+        run: pwd && ls && chmod u+x,g-wx,o-wx ../ansible && ansible-playbook playbooks.yaml -vv --tags installdocker
