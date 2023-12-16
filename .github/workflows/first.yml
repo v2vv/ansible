@@ -13,4 +13,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: run ansible playbooks
-        run: pwd && ls && chmod u+x,g-wx,o-wx ../ansible&& ansible-playbook playbooks.yaml -vvv --tags installdocker
+        run: pwd && ls && chmod u+x,g-wx,o-wx ../ansible&& ansible-playbook playbooks.yaml --tags installdocker --list-tasks
