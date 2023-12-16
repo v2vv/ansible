@@ -13,6 +13,8 @@ jobs:
        image: honyua/ansible_py:v0.2
     name: runner runs
     steps: 
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: run
         run: ansible-runner run ./ -p playbooks.yaml 
 
