@@ -10,7 +10,7 @@ jobs:
   runner_py:
     runs-on: ubuntu-latest 
     container:
-       image: honyua/ansible_py:v0.2
+       image: honyua/ansible_py:v0.3
     name: runner_py
     steps:
       - name: Checkout
