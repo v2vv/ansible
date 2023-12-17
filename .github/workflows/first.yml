@@ -1,7 +1,7 @@
 name: ansible
 on:
   push:
-    branches: mob
+    branches: ansible_action
     paths-ignore:
       - 'image/dockerfile'
       - '.github/workflows/ansible_docker_build.yml'
