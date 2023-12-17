@@ -28,4 +28,4 @@ jobs:
         with:
           push: true
           file: image/dockerfile
-          tags: honyua/ansible_py:v0.2
+          tags: honyua/ansible_py:v0.3
