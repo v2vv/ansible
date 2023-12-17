@@ -1,5 +1,5 @@
 import ansible_runner
-r = ansible_runner.run(private_data_dir='/workspaces/ansible', playbook='playbooks.yaml')
+r = ansible_runner.run(private_data_dir='./', playbook='playbooks.yaml')
 print("{}: {}".format(r.status, r.rc))
 # successful: 0
 for each_host_event in r.events:
