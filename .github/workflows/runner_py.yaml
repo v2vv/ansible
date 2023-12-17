@@ -9,9 +9,9 @@ on:
 jobs:
   runner_py:
     runs-on: ubuntu-latest 
-    name: runner_py
     container:
        image: honyua/ansible_py:v0.2
+    name: runner_py
     steps:
       - name: Checkout
         uses: actions/checkout@v4
