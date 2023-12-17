@@ -1,6 +1,8 @@
 FROM python:3
+
 ARG CONFIG_DIR="/root/.jupyter"
 ARG CONFIG_FILE="$CONFIG_DIR/jupyter_server_config.py"
+
 RUN apt update \
 && apt install sshpass \
 && pip install \
@@ -12,8 +14,6 @@ jupyterlab-git \
 && test -f $CONFIG_FILE || touch $CONFIG_FILE \
 && echo "c.ServerApp.allow_origin = '*'" >> $CONFIG_FILE \
 && echo "c.NotebookApp.allow_origin = '*'" >> $ICONFIG_FILE \
-&& echo "c.ServerApp.allow_root = True " >> $CONFIG_FILE \
-
-
+&& echo "c.ServerApp.allow_root = True " >> $CONFIG_FILE
 
 CMD [ "/bin/bash","-c","tail -f /dev/null" ]
