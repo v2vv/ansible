@@ -1,0 +1,17 @@
+name: runner_py
+on:
+  push:
+    branches: runner 
+    paths: ansible_runner.py
+
+jobs:
+  runner_py:
+    runs-on: ubuntu-latest 
+    name: runner_py
+    container:
+       image: honyua/ansible_py:v0.2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: run ansible runner python api
+        run: python ansible_runner.py
