@@ -1,10 +1,8 @@
 name: auto-ansible-runner
 on:
   push:
-    branches: ansible_action
-    paths-ignore:
-      - 'image/dockerfile'
-      - '.github/workflows/ansible_docker_build.yml'
+    paths:
+      - 'env*'
 
 jobs:
   runs:
