@@ -16,4 +16,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: run ansible runner python api
-        run: python ansible_runner.py
+        run: python ansible_runner_python.py
