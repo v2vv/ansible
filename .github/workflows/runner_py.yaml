@@ -1,7 +1,7 @@
 name: runner_py
 on:
   push:
-    branches: runner 
+    branches: ansible_runner_python
     paths: 
       - ansible_runner_python.py
       - .github/workflows/runner_py.yaml
