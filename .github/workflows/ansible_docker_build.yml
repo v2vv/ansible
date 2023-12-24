@@ -2,7 +2,7 @@ name: ansible_build
 on:
   push:
     paths:
-      - 'image/dockerfile'
+      - '.devcontainer/Dockerfile'
       - '.github/workflows/ansible_docker_build.yml'
 
 jobs:
@@ -27,5 +27,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          file: image/dockerfile
+          file: .devcontainer/Dockerfile
           tags: honyua/ansible_py:v0.3
