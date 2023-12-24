@@ -1,4 +1,5 @@
 {
   "dockerComposeFile": "docker-compose.yml",
-  "service": "devcontainer"
+  "service": "devcontainer",
+  "postAttachCommand": "chmod u+x,g-wx,o-wx ../ansible"
 }
