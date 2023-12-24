@@ -1,4 +1,5 @@
 {
-    "image": "honyua/ansible_py:v0.3",
-    "postAttachCommand": "chmod u+x,g-wx,o-wx ../ansible"
+  "dockerComposeFile": "docker-compose.yml",
+    "service": "devcontainer",
+    "workspaceFolder": "../..:/workspaces:cached"
 }
