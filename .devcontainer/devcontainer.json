@@ -1,5 +1,4 @@
 {
   "dockerComposeFile": "docker-compose.yml",
-    "service": "devcontainer",
-    "workspaceFolder": "../..:/workspaces:cached"
+  "service": "devcontainer"
 }
