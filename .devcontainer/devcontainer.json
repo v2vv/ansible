@@ -1,5 +1,6 @@
 {
   "dockerComposeFile": "docker-compose.yml",
   "service": "devcontainer",
+  "workspaceFolder": "/workspaces/ansible",
   "postAttachCommand": "chmod u+x,g-wx,o-wx ../ansible"
 }
