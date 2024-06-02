@@ -10,6 +10,10 @@ on:
         description: user root password
         default: "1111"
         required: true
+      tags:
+        description: user root password
+        default: "hello"
+        required: true
 jobs:
    job2:
       runs-on: ubuntu-latest
@@ -26,5 +30,8 @@ jobs:
             cat > hosts << EOF 
             name22 ansible_ssh_host=${{github.event.inputs.host}} ansible_ssh_user="root" ansible_ssh_pass="${{github.event.inputs.password}}" ansible_ssh_extra_args='-o StrictHostKeyChecking=no' 
             EOF
-      - name: check host file
-        run: cat hosts
+      - name: 设定文件权限
+        run:  chmod u+x,g-wx,o-wx ../ansible
+      - name: 执行自动化脚本
+        run:  ansible-playbook -i host playbooks.yaml -vv --tags "${{github.event.inputs.tags}}"
+
