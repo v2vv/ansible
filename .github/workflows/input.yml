@@ -20,8 +20,8 @@ jobs:
       # - name: run ansible playbooks
       #   run: pwd && ls && chmod u+x,g-wx,o-wx ../ansible && chmod 0400 ./config/.ssh/id_rsa && ansible-playbook playbooks.yaml -vv --tags installdocker
       - name: 生成 host文件
-        run: cat > hosts << EOF
-            name22 ansible_ssh_host=${{github.event.inputs.host}} ansible_ssh_user="root" ansible_ssh_pass="${{github.event.inputs.password}}" ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+        run: cat > hosts << EOF /
+            name22 ansible_ssh_host=${{github.event.inputs.host}} ansible_ssh_user="root" ansible_ssh_pass="${{github.event.inputs.password}}" ansible_ssh_extra_args='-o StrictHostKeyChecking=no' /
             EOF
       - name: check host file
         run: cat hosts
