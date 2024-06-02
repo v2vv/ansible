@@ -1,14 +1,5 @@
 name: ansible_input
-on:
-  repository_dispatch:
-  workflow_dispatch:
-    inputs:
-      host:
-        description: host ip address or hostname
-        required: true
-      password:
-        description: user root password
-        required: true
+on: push
 jobs:
    job2:
       runs-on: ubuntu-latest
