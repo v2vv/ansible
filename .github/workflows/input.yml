@@ -1,4 +1,4 @@
-name: ansible
+name: ansible_input
 on:
   workflow_dispatch:
     inputs:
