@@ -1,4 +1,4 @@
-name: ansible
+name: ansible2
 on: push
 
 jobs:
