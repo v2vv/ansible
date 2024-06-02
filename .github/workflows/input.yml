@@ -1,6 +1,17 @@
 name: ansible_input
-on: 
+on:
+  repository_dispatch:
   workflow_dispatch:
+    inputs:
+      source_branch:
+        description: "Select the source branch"
+        required: false
+        default: "openwrt-main"
+        type: choice
+        options:
+          - openwrt-main
+          - lede-master
+          - immortalwrt-master
 jobs:
    job2:
       runs-on: ubuntu-latest
