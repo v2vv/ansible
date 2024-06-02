@@ -1,0 +1,6 @@
+version: "3.8"
+services:
+  devcontainer:
+    image: "honyua/ansible_py:v0.4"
+    volumes:
+      - ../..:/workspaces:cached
