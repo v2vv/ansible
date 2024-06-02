@@ -1,17 +1,13 @@
 name: ansible_input
 on:
-  repository_dispatch:
   workflow_dispatch:
     inputs:
-      source_branch:
-        description: "Select the source branch"
-        required: false
-        default: "openwrt-main"
-        type: choice
-        options:
-          - openwrt-main
-          - lede-master
-          - immortalwrt-master
+      host:
+        description: host ip address or hostname
+        required: true
+      password:
+        description: user root password
+        required: true
 jobs:
    job2:
       runs-on: ubuntu-latest
@@ -24,6 +20,8 @@ jobs:
       # - name: run ansible playbooks
       #   run: pwd && ls && chmod u+x,g-wx,o-wx ../ansible && chmod 0400 ./config/.ssh/id_rsa && ansible-playbook playbooks.yaml -vv --tags installdocker
       - name: 生成 host文件
-        run: echo hello
+        run: cat > hosts << EOF
+            name22 ansible_ssh_host=${{github.event.inputs.host}} ansible_ssh_user="root" ansible_ssh_pass="${{github.event.inputs.password}}" ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+            EOF
       - name: check host file
         run: cat hosts
