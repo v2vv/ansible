@@ -1,6 +1,6 @@
 ---
 - name: Hello
-  hosts: name2
+  hosts: default
   remote_user: root
   tasks:
     - name: Import the example

@@ -28,7 +28,7 @@ jobs:
       - name: 生成 host文件
         run: | 
             cat > hosts << EOF 
-            name22 ansible_ssh_host=${{github.event.inputs.host}} ansible_ssh_user="root" ansible_ssh_pass="${{github.event.inputs.password}}" ansible_ssh_extra_args='-o StrictHostKeyChecking=no' 
+            default ansible_ssh_host=${{github.event.inputs.host}} ansible_ssh_user="root" ansible_ssh_pass="${{github.event.inputs.password}}" ansible_ssh_extra_args='-o StrictHostKeyChecking=no' 
             EOF
       - name: 检查 host 文件
         run:  chmod u+x,g-wx,o-wx ../ansible
