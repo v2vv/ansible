@@ -1,4 +1,4 @@
-name: ansible2
+name: ansible_default
 on: push
 
 jobs:
