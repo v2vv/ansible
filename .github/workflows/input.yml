@@ -11,7 +11,7 @@ on:
         default: "1111"
         required: true
       tags:
-        description: user root password
+        description: arg --tags
         default: "hello"
         required: true
 jobs:
