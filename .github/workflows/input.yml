@@ -1,5 +1,6 @@
 name: ansible_input
 on:
+  repository_dispatch:
   workflow_dispatch:
     inputs:
       host:
