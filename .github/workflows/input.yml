@@ -31,7 +31,7 @@ jobs:
             default ansible_ssh_host=${{github.event.inputs.host}} ansible_ssh_user="root" ansible_ssh_pass="${{github.event.inputs.password}}" ansible_ssh_extra_args='-o StrictHostKeyChecking=no' 
             EOF
       - name: 检查 host 文件
-        run:  chmod u+x,g-wx,o-wx ../ansible
+        run:  cat hosts
       - name: 设定文件权限
         run:  chmod u+x,g-wx,o-wx ../ansible
       - name: 执行自动化脚本
