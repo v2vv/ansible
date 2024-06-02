@@ -1,4 +1,4 @@
-name: ansible_default
+name: ansible_default_cfg
 on: push
 
 jobs:
