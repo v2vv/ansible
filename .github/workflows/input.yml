@@ -1,5 +1,6 @@
 name: ansible_input
-on: push
+on: 
+  workflow_dispatch:
 jobs:
    job2:
       runs-on: ubuntu-latest
