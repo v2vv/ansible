@@ -19,12 +19,18 @@
     - name: run vscode tunnel
       ansible.builtin.import_tasks: roles/vscodeTunnel/tasks/main.yaml
       tags: vscodetunnel
+
     - name: install ddns-go
       ansible.builtin.import_tasks: roles/ddns-go/tasks/main.yaml
       tags: install_ddns-go
+
     - name: install alist
       ansible.builtin.import_tasks: roles/alist/tasks/main.yaml
       tags: install_alist
+
+    - name: install semaphore
+      ansible.builtin.import_tasks: roles/semaphore/tasks/main.yaml
+      tags: install_semaphore
 # - name: Hello2
 #   hosts: reck
 #   remote_user: root

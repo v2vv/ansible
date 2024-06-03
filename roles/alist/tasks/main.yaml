@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: /root/alist
     state: directory
-    mode: '0755'
+    mode: '0666'
 
 - name: Ensure the destination directory exists
   ansible.builtin.file:
@@ -14,7 +14,7 @@
   copy:
     src: data.db
     dest: /root/alist/data.db
-    mode: '0755'
+    mode: '0666'
 
 - name: copy alist cinfig files
   copy:

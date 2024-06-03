@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: /root/ddns-go
     state: directory
-    mode: '0755'
+    mode: '0666'
 
 - name: copy ddns-go config files
   copy:
