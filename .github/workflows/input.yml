@@ -14,17 +14,21 @@ on:
         description: arg --tags
         default: "hello"
         required: true
+      args:
+        description: arg --tags
+        default: "hello"
+        required: true
 jobs:
    job2:
       runs-on: ubuntu-latest
       container:
-       image: honyua/ansible_py:v0.1
+       image: honyua/ansible_py:v0.4
       name: 运行ansible
       steps:
       - name: Checkout
         uses: actions/checkout@v4
       # - name: run ansible playbooks
-      #   run: pwd && ls && chmod u+x,g-wx,o-wx ../ansible && chmod 0400 ./config/.ssh/id_rsa && ansible-playbook playbooks.yaml -vv --tags installdocker
+      #   run: pwd && ls &&  chmod 0400 ./config/.ssh/id_rsa && ansible-playbook playbooks.yaml -vv --tags installdocker
       - name: 生成 host文件
         run: | 
             cat > hosts << EOF 
@@ -32,8 +36,8 @@ jobs:
             EOF
       - name: 检查 host 文件
         run:  cat hosts
-      - name: 设定文件权限
-        run:  chmod u+x,g-wx,o-wx ../ansible
+      # - name: 设定文件权限
+      #   run:  chmod u+x,g-wx,o-wx ../ansible
       - name: 执行自动化脚本
-        run:  ansible-playbook -i hosts playbooks.yaml -vv --tags "${{github.event.inputs.tags}}"
+        run:  chmod u+x,g-wx,o-wx ../ansible && ansible-playbook -i hosts playbooks.yaml -vv --tags "${{github.event.inputs.tags}}"
 
