@@ -1,39 +1,16 @@
-# - name: find config file
-#   ansible.builtin.raw: echo {{ playbook_dir }}
-#   register: my_output # <- Registers the command output.
-#   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
-#   tags: ddns-go_install
+- name: Ensure the destination directory exists
+  ansible.builtin.file:
+    path: /root/ddns-go
+    state: directory
+    mode: '0755'
 
-# - name: find config file
-#   ansible.builtin.raw: chmod 777 "{{ playbook_dir }}"
-#   register: my_output # <- Registers the command output.
-#   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
-#   tags: ddns-go_install
-
-# - name: find config file
-#   ansible.builtin.raw: ls -l "{{ playbook_dir }}"
-#   register: my_output # <- Registers the command output.
-#   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
-#   tags: ddns-go_install
-
-# - name: find config file
-#   ansible.builtin.raw: ls -l "{{ playbook_dir }}/roles/ddns-go/tasks/files"
-#   register: my_output # <- Registers the command output.
-#   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
-#   tags: ddns-go_install
-
-# - name: find config file
-#   ansible.builtin.raw: cat "{{ playbook_dir }}/roles/ddns-go/tasks/files/.ddns_go_config.yaml"
-#   register: my_output # <- Registers the command output.
-#   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
-#   tags: ddns-go_install
-
-- name: copy ddns file to ddns server
+- name: copy ddns-go config files
   copy:
     src: .ddns_go_config.yaml
     dest: /root/ddns-go/.ddns_go_config.yaml
+    mode: '0755'
 
-- name: Install curl
+- name: docker Install ddns-go
   ansible.builtin.raw: docker run -d --name ddns-go --restart=always --net=host -v /root/ddns-go/:/root jeessy/ddns-go
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
