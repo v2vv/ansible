@@ -5,6 +5,12 @@
   tags: ddns-go_install
 
 - name: find config file
+  ansible.builtin.raw: chmod 777 "{{ playbook_dir }}"
+  register: my_output # <- Registers the command output.
+  changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+  tags: ddns-go_install
+
+- name: find config file
   ansible.builtin.raw: ls -l "{{ playbook_dir }}"
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
