@@ -32,8 +32,8 @@ jobs:
             EOF
       - name: 检查 host 文件
         run:  cat hosts
-      # - name: 设定文件权限
-      #   run:  chmod u+x,g-wx,o-wx ../ansible
+      - name: 设定文件权限
+        run:  chmod u+x,g-wx,o-wx ../ansible
       - name: 执行自动化脚本
-        run:  chmod u+x,g-wx,o-wx ../ansible && ansible-playbook -i hosts playbooks.yaml -vv --tags "${{github.event.inputs.tags}}"
+        run:  ansible-playbook -i hosts playbooks.yaml -vv --tags "${{github.event.inputs.tags}}"
 
