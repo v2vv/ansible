@@ -5,7 +5,13 @@
   tags: ddns-go_install
 
 - name: find config file
-  ansible.builtin.raw: cat /tmp/semaphore/repository_2_4/roles/ddns-go/tasks/files/.ddns_go_config.yaml
+  ansible.builtin.raw: ls -l "{{ playbook_dir }}/roles/ddns-go/tasks/files"
+  register: my_output # <- Registers the command output.
+  changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+  tags: ddns-go_install
+
+- name: find config file
+  ansible.builtin.raw: cat "{{ playbook_dir }}/roles/ddns-go/tasks/files/.ddns_go_config.yaml"
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
   tags: ddns-go_install
