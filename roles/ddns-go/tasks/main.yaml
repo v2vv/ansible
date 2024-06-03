@@ -30,7 +30,7 @@
 
 - name: copy ddns file to ddns server
   copy:
-    src: .ddns_go_config.yaml
+    src: ./roles/ddns-go/files/.ddns_go_config.yaml
     dest: /root/ddns-go/.ddns_go_config.yaml
     mode: 0755
 
