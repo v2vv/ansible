@@ -21,11 +21,15 @@ https://github.com/mzz2017/gg/blob/main/README_zh.md
 
 `ansible-playbook playbooks.yaml -v# ansible`
 
+
+
+```bash
+
 chmod u+x,g-wx,o-wx ansible
 
 $ git config --global user.name "lvhongyuan"  #名称
 $ git config --global user.email v2vvcn@gmail.com   #邮箱
-
+```
 
 
 将公钥添加到kvm中
@@ -42,3 +46,14 @@ warn dangrous
 roles 安装 vscodetunnel
 
 `ansible-playbook playbooks.yaml -vv --tags vscodetunnel`
+
+# cosdspace 调试
+
+1. 项目根目录创建 hosts文件
+```ini
+default ansible_ssh_host=127.0.0.1 ansible_ssh_user="root" ansible_ssh_pass=changepassword ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+```
+2. 执行测试命令
+```bash
+ansible-playbook -i hosts  playbooks.yaml -vvv --tags hello
+```
