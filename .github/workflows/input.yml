@@ -14,10 +14,6 @@ on:
         description: arg --tags
         default: "hello"
         required: true
-      args:
-        description: arg --tags
-        default: "hello"
-        required: true
 jobs:
    job2:
       runs-on: ubuntu-latest
