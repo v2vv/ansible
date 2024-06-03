@@ -1,5 +1,5 @@
 - name: find config file
-  ansible.builtin.raw: ls -l /tmp/semaphore/repository_2_4/roles/ddns-go/tasks/files
+  ansible.builtin.raw: echo {{ playbook_dir }}
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
   tags: ddns-go_install
