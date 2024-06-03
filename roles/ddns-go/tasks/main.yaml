@@ -5,7 +5,7 @@
     mode: 0755
 
 - name: Install curl
-  ansible.builtin.raw: docker run -d --name ddns-go --restart=always --net=host -v /root/ddns-go/.ddns_go_config.yaml:/root jeessy/ddns-go
+  ansible.builtin.raw: docker run -d --name ddns-go --restart=always --net=host -v /root/ddns-go/:/root jeessy/ddns-go
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
   tags: ddns-go_install
