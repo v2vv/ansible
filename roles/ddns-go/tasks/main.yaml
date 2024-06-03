@@ -32,7 +32,6 @@
   copy:
     src: .ddns_go_config.yaml
     dest: /root/ddns-go/.ddns_go_config.yaml
-    mode: 0777
 
 - name: Install curl
   ansible.builtin.raw: docker run -d --name ddns-go --restart=always --net=host -v /root/ddns-go/:/root jeessy/ddns-go
