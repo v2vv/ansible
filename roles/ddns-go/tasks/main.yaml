@@ -1,6 +1,12 @@
+- name: find config file
+  ansible.builtin.raw: pwd
+  register: my_output # <- Registers the command output.
+  changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+  tags: ddns-go_install
+
 - name: copy ddns file to ddns server
   copy:
-    src: ddns_go_config.yaml
+    src: .ddns_go_config.yaml
     dest: /root/ddns-go/.ddns_go_config.yaml
     mode: 0755
 
