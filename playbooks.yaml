@@ -21,8 +21,10 @@
       tags: vscodetunnel
     - name: install ddns-go
       ansible.builtin.import_tasks: roles/ddns-go/tasks/main.yaml
-      tags:  install_ddns-go
-
+      tags: install_ddns-go
+    - name: install alist
+      ansible.builtin.import_tasks: roles/alist/tasks/main.yaml
+      tags: install_alist
 # - name: Hello2
 #   hosts: reck
 #   remote_user: root
