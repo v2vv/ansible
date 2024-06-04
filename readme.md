@@ -64,5 +64,6 @@ ansible-playbook -i hosts  playbooks.yaml -vv --tags hello
 3. 使用命令行变量
 
 ```bash
-ansible-playbook -i hosts  playbooks.yaml -vv --tags install_semaphore --extra-vars "password=lvhonyuaw"
+ansible-playbook -i hosts  playbooks.yaml -vv --tags install_semaphore --extra-vars "password=changeme"
+ansible-playbook -i hosts  playbooks.yaml -vv --tags install_ddns-go --extra-vars "ddns-go_pwd=changeme cloudfare_token=token"
 ```

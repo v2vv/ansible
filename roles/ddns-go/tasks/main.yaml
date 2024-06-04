@@ -4,11 +4,23 @@
     state: directory
     mode: '0666'
 
+# - name: copy ddns-go config files
+#   copy:
+#     src: .ddns_go_config.yaml
+#     dest: /root/ddns-go/.ddns_go_config.yaml
+#     mode: '0755'
+
 - name: copy ddns-go config files
-  copy:
+  ansible.builtin.template:
     src: .ddns_go_config.yaml
     dest: /root/ddns-go/.ddns_go_config.yaml
-    mode: '0755'
+    mode: '0666'
+
+# - name: copy semaphore docker-compose.yml files
+#   ansible.builtin.template:
+#     src: templates/docker-compose.yml.j2
+#     dest: /root/semaphore/docker-compose.yml
+#     mode: '0666'
 
 - name: docker Install ddns-go
   ansible.builtin.raw: docker run -d --name ddns-go --restart=always --net=host -v /root/ddns-go/:/root jeessy/ddns-go
