@@ -17,10 +17,16 @@
     mode: '0666'
 
 - name: copy semaphore docker-compose.yml files
-  ansible.builtin.template:
-    src: templates/docker-compose.yml.j2
-    dest: /root/semaphore/docker-compose.yml
+  copy:
+    src: docker-compose.yaml
+    dest: /root/semaphore/docker-compose.yaml
     mode: '0666'
+
+# - name: copy semaphore docker-compose.yml files
+#   ansible.builtin.template:
+#     src: templates/docker-compose.yml.j2
+#     dest: /root/semaphore/docker-compose.yml
+#     mode: '0666'
 
 - name: docker Install semaphore
   ansible.builtin.raw: docker compose -f /root/semaphore/docker-compose.yml up -d

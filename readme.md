@@ -53,8 +53,16 @@ roles 安装 vscodetunnel
 ```ini
 default ansible_ssh_host=127.0.0.1 ansible_ssh_user="root" ansible_ssh_pass=changepassword ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 ```
+
 2. 执行测试命令
+
 ```bash
 ansible-playbook -i hosts  playbooks.yaml -vvv --tags hello
 ansible-playbook -i hosts  playbooks.yaml -vv --tags hello
+```
+
+3. 使用命令行变量
+
+```bash
+ansible-playbook -i hosts  playbooks.yaml -vv --tags install_semaphore --extra-vars "password=lvhonyuaw"
 ```

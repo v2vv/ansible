@@ -12,8 +12,8 @@
     - role: authorized
       tags: authorized
 
-    - role: vscode tunnel
-      tags: install_alist
+    - role: vscodeTunnel
+      tags: vscodetunnel
 
     - role: alist
       tags: install_alist
