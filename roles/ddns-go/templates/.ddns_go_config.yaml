@@ -23,7 +23,7 @@ dnsconf:
       ttl: ""
 user:
     username: admin
-    password: {{ddns_go_password}
+    password: {{ddns_go_password}}
 webhook:
     webhookurl: ""
     webhookrequestbody: ""
