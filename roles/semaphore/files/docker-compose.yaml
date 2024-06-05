@@ -11,5 +11,5 @@ services:
       SEMAPHORE_ADMIN: admin
       TZ: Europe/Berlin
     volumes: # 需要 配置文件 和数据库文件 ，否则无法启动，可先不挂载，在容器内部生成配置文件 和数据库文件
-      - /root/semaphore/config.json:/etc/semaphore/config.json # config.json location
-      - /root/semaphore/database.boltdb:/var/lib/semaphore/database.boltdb # database.boltdb location (Not required if using mysql or postgres)
+      - ./config.json:/etc/semaphore/config.json # config.json location
+      - ./database.boltdb:/var/lib/semaphore/database.boltdb # database.boltdb location (Not required if using mysql or postgres)
