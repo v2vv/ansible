@@ -24,6 +24,9 @@
     - role: semaphore
       tags: install_semaphore
 
+    - role: backup
+      tags: backup
+
   # tasks:
   #   - name: Import the example
   #     ansible.builtin.import_role:
