@@ -1,7 +1,8 @@
 services:
   semaphore:
     ports:
-      - 3000:3000
+      - 3088:3000
+    container_name：semaphore
     image: semaphoreui/semaphore:latest
     environment:
       SEMAPHORE_DB_DIALECT: bolt
