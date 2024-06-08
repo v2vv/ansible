@@ -1,6 +1,6 @@
 ---
 - name: Hello
-  hosts: default
+  hosts: ungrouped
   remote_user: root
   roles:
     - role: hello
