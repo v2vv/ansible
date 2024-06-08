@@ -1,0 +1,39 @@
+name: ansible_input
+on:
+  workflow_dispatch:
+    inputs:
+      host:
+        description: host ip address or hostname
+        default: "127.0.0.1"
+        required: true
+      password:
+        description: user root password
+        default: "1111"
+        required: true
+      tags:
+        description: arg --tags
+        default: "hello"
+        required: true
+jobs:
+   job2:
+      runs-on: ubuntu-latest
+      container:
+       image: honyua/ansible_py:v0.4
+      name: 运行ansible
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # - name: run ansible playbooks
+      #   run: pwd && ls &&  chmod 0400 ./config/.ssh/id_rsa && ansible-playbook playbooks.yaml -vv --tags installdocker
+      - name: 生成 host文件
+        run: | 
+            cat > hosts << EOF 
+            default ansible_ssh_host=${{github.event.inputs.host}} ansible_ssh_user="root" ansible_ssh_pass="${{github.event.inputs.password}}" ansible_ssh_extra_args='-o StrictHostKeyChecking=no' 
+            EOF
+      - name: 检查 host 文件
+        run:  cat hosts
+      - name: 设定文件权限
+        run:  chmod u+x,g-wx,o-wx ../ansible
+      - name: 执行自动化脚本
+        run:  ansible-playbook -i hosts playbooks.yaml -vv --tags "${{github.event.inputs.tags}}"
+
