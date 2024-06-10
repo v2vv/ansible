@@ -1,47 +1,56 @@
-- name: backup alist ,停止容器后备份
-  block:
-  - name: 停止 alist
-    shell: docker stop alist
-    register: my_output # <- Registers the command output.
-    changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
-    tags: backup
+- name: 上传备份脚本
+  copy:
+    src: backup.sh
+    dest: /root/backup/backup.sh
+    mode: '0755'
 
-  - name: fetch alist data files
-    fetch:
-      src: /root/alist/config.json
-      dest: tmp/alist/
-      flat: yes
 
-  - name: fetch alist data files
-    fetch:
-      src: /root/alist/data.db
-      dest: tmp/alist/
-      flat: yes
 
-  - name: alist start
-    shell: docker start alist
-    register: my_output # <- Registers the command output.
-    changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
-    tags: backup
 
-- name: backup ddns-go
-  block:
-  - name: fetch ddns-go data files
-    fetch:
-      src: /root/ddns-go/.ddns_go_config.yaml
-      dest: tmp/alist/
-      flat: yes
+# - name: backup alist ,停止容器后备份
+#   block:
+#   - name: 停止 alist
+#     shell: docker stop alist
+#     register: my_output # <- Registers the command output.
+#     changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+#     tags: backup
 
-- name: backup semaphore
-  block:
-  - name: fetch semaphore data files
-    fetch:
-      src: /root/semaphore/config.json
-      dest: tmp/semaphore/
-      flat: yes
+  # - name: fetch alist data files
+  #   fetch:
+  #     src: /root/alist/config.json
+  #     dest: tmp/alist/
+  #     flat: yes
 
-  - name: fetch semaphore data files
-    fetch:
-      src: /root/semaphore/database.boltdb
-      dest: tmp/semaphore/
-      flat: yes
+  # - name: fetch alist data files
+  #   fetch:
+  #     src: /root/alist/data.db
+  #     dest: tmp/alist/
+  #     flat: yes
+
+#   - name: alist start
+#     shell: docker start alist
+#     register: my_output # <- Registers the command output.
+#     changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+#     tags: backup
+
+# - name: backup ddns-go
+#   block:
+#   - name: fetch ddns-go data files
+#     fetch:
+#       src: /root/ddns-go/.ddns_go_config.yaml
+#       dest: tmp/alist/
+#       flat: yes
+
+# - name: backup semaphore
+#   block:
+#   - name: fetch semaphore data files
+#     fetch:
+#       src: /root/semaphore/config.json
+#       dest: tmp/semaphore/
+#       flat: yes
+
+#   - name: fetch semaphore data files
+#     fetch:
+#       src: /root/semaphore/database.boltdb
+#       dest: tmp/semaphore/
+#       flat: yes

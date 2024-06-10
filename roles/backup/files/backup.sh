@@ -1,10 +1,16 @@
 #!/bin/bash
 
-localFilePath=$0
-oneDrivePath=$1
-client_id=$2
-client_secret=$3
-tenant_id=$4
+localFilePath=$1
+oneDrivePath=$2
+client_id=$3
+client_secret=$4
+tenant_id=$5
+
+# echo $localFilePath
+# echo $oneDrivePath
+# echo $client_id
+# echo $client_secret
+# echo $tenant_id
 
 # 使用 curl 发送 POST 请求
 response=$(curl --location --request POST "https://login.microsoftonline.com/$tenant_id/oauth2/v2.0/token" \
@@ -27,3 +33,4 @@ curl --location --request PUT "https://graph.microsoft.com/v1.0/users/me@lvhongy
 --header 'User-Agent: Apifox/1.0.0 (https://apifox.com)' \
 --header 'Content-Type: application/octet-stream' \
 --data-binary "@$localFilePath"
+
