@@ -1,0 +1,1 @@
+0 0 * * * $HOME/backup/backup.sh  {{localFilePath}} {{oneDrivePath}} {{client_id}} {{client_secret}} {{tenant_id}} >> $HOME/backup/my_script.log 2>&1

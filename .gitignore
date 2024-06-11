@@ -1,0 +1,5 @@
+ansible.log
+*hosts
+tmp
+.ipynb_checkpoints
+*.env

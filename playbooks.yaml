@@ -1,0 +1,69 @@
+---
+- name: Hello
+  hosts: ungrouped
+  remote_user: root
+  roles:
+    - role: hello
+      tags: hello
+
+    - role: docker
+      tags: install_docker
+
+    - role: authorized
+      tags: authorized
+
+    - role: vscodeTunnel
+      tags: vscodetunnel
+
+    - role: alist
+      tags: install_alist
+
+    - role: ddns-go
+      tags: install_ddns-go
+
+    - role: semaphore
+      tags: install_semaphore
+
+    - role: backup
+      tags: backup
+
+  # tasks:
+  #   - name: Import the example
+  #     ansible.builtin.import_role:
+  #       name: hello
+  #     tags: hello
+
+  #   - name: Import the example role
+  #     ansible.builtin.import_tasks: roles/docker/tasks/main.yaml
+  #     tags: installdocker
+
+  #   - name: Up authorized Public key
+  #     ansible.builtin.import_tasks: roles/authorized/tasks/main.yaml
+  #     tags: authorized
+
+  #   - name: run vscode tunnel
+  #     ansible.builtin.import_tasks: roles/vscodeTunnel/tasks/main.yaml
+  #     tags: vscodetunnel
+
+  #   - name: install ddns-go
+  #     ansible.builtin.import_tasks: roles/ddns-go/tasks/main.yaml
+  #     tags: install_ddns-go
+
+  #   - name: install alist
+  #     ansible.builtin.import_tasks: roles/alist/tasks/main.yaml
+  #     tags: install_alist
+
+  #   - name: install semaphore
+  #     ansible.builtin.import_tasks: roles/semaphore
+  #     tags: install_semaphore
+# - name: Hello2
+#   hosts: reck
+#   remote_user: root
+#   tasks:
+#     - name: Import the example
+#       ansible.builtin.import_role:
+#         name: hello
+
+#     - name: Import the example role
+#       ansible.builtin.import_tasks: roles/docker/tasks/main.yaml
+#       tags: installdocker

@@ -1,0 +1,20 @@
+---
+- name: Download Vscode Cli
+  ansible.builtin.raw: curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz
+  register: my_output # <- Registers the command output.
+  changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+
+- name: Tar package
+  ansible.builtin.raw: tar -xf vscode_cli.tar.gz
+  register: my_output # <- Registers the command output.
+  changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+
+- name: Create a secure tunnel with the tunnel command
+  ansible.builtin.raw: nohup ./code tunnel --accept-server-license-terms >vscode_Tunnel.log 2>&1 &
+  register: my_output # <- Registers the command output.
+  changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+
+- name: Show log
+  ansible.builtin.raw: cat vscode_Tunnel.log
+  register: my_output # <- Registers the command output.
+  changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
