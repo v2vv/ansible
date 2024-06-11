@@ -61,7 +61,7 @@ echo '开始备份'
 # $2 oneDrivePath 
 upload(){
     echo 上传文件$1 到 oneDrive $2
-    response=$(curl --location --request PUT "https://graph.microsoft.com/v1.0/users/me@lvhongyuan.site/drive/root:/$2/hh2.txt:/content" \
+    response=$(curl --location --request PUT "https://graph.microsoft.com/v1.0/users/me@lvhongyuan.site/drive/root:/$2:/content" \
     --header "Authorization: Bearer $access_token" \
     --header 'User-Agent: Apifox/1.0.0 (https://apifox.com)' \
     --header 'Content-Type: application/octet-stream' \
