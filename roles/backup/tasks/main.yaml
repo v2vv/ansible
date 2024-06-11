@@ -4,7 +4,18 @@
     dest: /root/backup/backup.sh
     mode: '0755'
 
+- name: copy my_cron_job files
+  ansible.builtin.template:
+    src: my_cron_job
+    dest: /root/backup/my_cron_job
+    mode: '0666'
 
+
+- name: 定时任务开启
+  shell: crontab $HOME/backup/my_cron_job
+  register: my_output # <- Registers the command output.
+  changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+  tags: backup
 
 
 # - name: backup alist ,停止容器后备份
