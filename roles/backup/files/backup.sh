@@ -17,7 +17,7 @@ alist_data_path='alist/data.db'
 ddnsgo_config_path='ddns-go/.ddns-go_config.yaml'
 
 semaphore_config_path='semaphore/config.json'
-semaphore_database_path='semaphore/database.boldb'
+semaphore_database_path='semaphore/database.boltdb'
 
 echo "localFilePath $localFilePath"
 echo "oneDrivePath $oneDrivePath"

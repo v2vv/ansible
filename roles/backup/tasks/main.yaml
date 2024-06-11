@@ -12,7 +12,7 @@
 
 - name: copy my_cron_job files
   ansible.builtin.template:
-    src: my_cron_job
+    src: my_cron_job.j2
     dest: $HOME/backup/my_cron_job
     mode: '0666'
 
