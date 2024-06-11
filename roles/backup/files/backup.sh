@@ -52,10 +52,10 @@ fi
 echo '开始备份'
 
 
-urlencode() {
-    src_url=$(echo -n "$1" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
-    echo $src_url
-}
+# urlencode() {
+#     src_url=$(echo -n "$1" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
+#     echo $src_url
+# }
 
 # $1 localFilePath
 # $2 oneDrivePath 
@@ -90,7 +90,7 @@ else
     echo -e "${YELLOW}alist Backup File does not exist.${NC}"
     # echo "alist Backup File does not exist."
 fi
-
+  
 
 
 # 上传 ddns-go
