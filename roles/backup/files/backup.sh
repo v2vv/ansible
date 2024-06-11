@@ -41,7 +41,7 @@ response=$(curl --location --request POST "https://login.microsoftonline.com/$te
 access_token=$(echo $response | jq -r '.access_token')
 # 检查access_token是否为空
 if [ -n "$access_token" ]; then
-  echo -e "${GREEN}授权成功${NC}"
+  echo "授权成功"
   # 输出 access_token
     # echo "Access Token: $access_token"
 else
@@ -51,11 +51,17 @@ fi
 
 echo '开始备份'
 
+
+urlencode() {
+    src_url=$(echo -n "$1" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
+    echo $src_url
+}
+
 # $1 localFilePath
 # $2 oneDrivePath 
 upload(){
     echo 上传文件$1 到 oneDrive $2
-    response=$(curl --location --request PUT "https://graph.microsoft.com/v1.0/users/me@lvhongyuan.site/drive/root:/文档/hh.txt:/content" \
+    response=$(curl --location --request PUT "https://graph.microsoft.com/v1.0/users/me@lvhongyuan.site/drive/root:/$2/hh2.txt:/content" \
     --header "Authorization: Bearer $access_token" \
     --header 'User-Agent: Apifox/1.0.0 (https://apifox.com)' \
     --header 'Content-Type: application/octet-stream' \
@@ -90,7 +96,10 @@ fi
 # 上传 ddns-go
 if [[ -e $localFilePath/$ddnsgo_config_path ]]; then
     echo "ddns-go Backup File exists."
-    upload $localFilePath/$ddnsgo_config_path $oneDriveBackupFolder/$ddnsgo_config_path
+    # echo $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
+    # upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
+    # echo $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
+    upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
 else
     echo -e "${YELLOW}ddns-go Backup File $localFilePath/$ddnsgo_config_path does not exist.${NC}"
     # echo "ddns-go Backup File does not exist."
@@ -108,3 +117,4 @@ else
 fi
 
 echo '备份完成'
+
