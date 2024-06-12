@@ -1,24 +1,37 @@
 - name: 创建同步文件夹
   file:
-    path: $HOME/cronbackup
+    path: $HOME/backup
     state: directory
     mode: '0666'
 
 - name: 上传恢复数据脚本
   copy:
-    src: roles/cronbackup/files/restore.sh
-    dest: $HOME/sync/restore.sh
+    src: restore.sh
+    dest: $HOME/backup/restore.sh
     mode: '0755'
 
+
+- name: 判断是否安装 alist
+  shell:|
+        # 检查 alist 容器是否在运行
+        container=$(docker ps -a --filter "name=alist" --format "{{.Names}}")
+        if [ "$container" == "alist" ]; then
+            echo "alist 容器正在运行，停止容器..."
+            docker stop alist
+            echo "删除 alist 容器."
+            docker rm  alist
+        fi
+        mkdir -p alist
+
 - name: 运行恢复数据安装脚本
-  shell: $HOME/sync/restore.sh {{localFilePath}} {{oneDrivePath}} {{client_id}} {{client_secret}} {{tenant_id}} {{backup_soft_name}}
+  shell: $HOME/backup/restore.sh {{localFilePath}} {{oneDrivePath}} {{client_id}} {{client_secret}} {{tenant_id}} {{backup_soft_name}}
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
 
-# - name: 运行 {{backup_soft_name}}
-#   shell: docker compose -f $HOME/{{backup_soft_name}}/docker-compose.yaml up -d
-#   register: my_output # <- Registers the command output.
-#   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+- name: 运行 {{backup_soft_name}}
+  shell: docker compose -f $HOME/{{backup_soft_name}}/docker-compose.yaml up -d
+  register: my_output # <- Registers the command output.
+  changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
 
 - name: 运行备份 {{backup_soft_name}}
   shell: docker compose -f $HOME/{{backup_soft_name}}/docker-compose.yaml up -d
