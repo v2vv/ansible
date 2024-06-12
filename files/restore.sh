@@ -49,6 +49,7 @@ fi
 # localFilePath $1
 # oneDriveBackupFolder $2
 download(){
+    echo "下载 onedrive $2"
     response=$(curl --location --request GET "https://graph.microsoft.com/v1.0/users/me@lvhongyuan.site/drive/root:/$2:/content" \
     --header "Authorization: Bearer $access_token" \
     --header 'User-Agent: Apifox/1.0.0 (https://apifox.com)' \
@@ -70,54 +71,54 @@ mkdir -p ddns-go
 download "$localFilePath/$ddnsgo_config_path" "$oneDriveBackupFolder/$ddnsgo_config_path"
 download "$localFilePath/$ddnsgo_composefile_path" "$oneDriveBackupFolder/$ddnsgo_composefile_path"
 
-echo '开始恢复'
+# echo '开始恢复'
 
-case $backup_soft_name in
-    "alist")
-        echo "恢复alist备份文件"
-        # 检查 alist 容器是否在运行
-        container=$(docker ps --filter "name=alist" --format "{{.Names}}")
-        if [ "$container" == "alist" ]; then
-            echo "alist 容器正在运行，停止容器..."
-            docker stop alist
-        fi
-        mkdir -p alist
-        download "$localFilePath/$alist_config_Path" "$oneDriveBackupFolder/$alist_config_Path"
-        download "$localFilePath/$alist_data_path" "$oneDriveBackupFolder/$alist_data_path"
-        download "$localFilePath/$alist_composefile_path" "$oneDriveBackupFolder/$alist_composefile_path"
-        docker compose -f "$localFilePath/$alist_composefile_path" up -d
-        ;;
-    "ddns-go")
-        echo "恢复ddns-go备份文件"
-        # 检查 ddns-go 容器是否在运行
-        container=$(docker ps --filter "name=ddns-go" --format "{{.Names}}")
-        if [ "$container" == "ddns-go" ]; then
-            echo "ddns-go 容器正在运行，停止容器..."
-            docker stop ddns-go
-        fi
-        mkdir -p ddns-go
-        download "$localFilePath/$ddnsgo_config_path" "$oneDriveBackupFolder/$ddnsgo_config_path"
-        download "$localFilePath/$ddnsgo_composefile_path" "$oneDriveBackupFolder/$ddnsgo_composefile_path"
-        docker compose -f "$localFilePath/$ddnsgo_composefile_path" up -d
-        ;;
-    "semaphore")
-        echo "恢复semaphore备份文件"
-        # 检查 semaphore 容器是否在运行
-        container=$(docker ps --filter "name=semaphore" --format "{{.Names}}")
-        if [ "$container" == "semaphore" ]; then
-            echo "semaphore 容器正在运行，停止容器..."
-            docker stop semaphore
-        fi
-        mkdir -p semaphore
-        download "$localFilePath/$semaphore_config_path" "$oneDriveBackupFolder/$semaphore_config_path"
-        download "$localFilePath/$semaphore_database_path" "$oneDriveBackupFolder/$semaphore_database_path"
-        download "$localFilePath/$semaphore_composefile_path" "$oneDriveBackupFolder/$semaphore_composefile_path"
-        docker compose -f "$localFilePath/$semaphore_composefile_path" up -d
-        ;;
-    *)
-        echo "未匹配到任何恢复数据名"
-        ;;
-  esac
+# case $backup_soft_name in
+#     "alist")
+#         echo "恢复alist备份文件"
+#         # 检查 alist 容器是否在运行
+#         container=$(docker ps --filter "name=alist" --format "{{.Names}}")
+#         if [ "$container" == "alist" ]; then
+#             echo "alist 容器正在运行，停止容器..."
+#             docker stop alist
+#         fi
+#         mkdir -p alist
+#         download "$localFilePath/$alist_config_Path" "$oneDriveBackupFolder/$alist_config_Path"
+#         download "$localFilePath/$alist_data_path" "$oneDriveBackupFolder/$alist_data_path"
+#         download "$localFilePath/$alist_composefile_path" "$oneDriveBackupFolder/$alist_composefile_path"
+#         docker compose -f "$localFilePath/$alist_composefile_path" up -d
+#         ;;
+#     "ddns-go")
+#         echo "恢复ddns-go备份文件"
+#         # 检查 ddns-go 容器是否在运行
+#         container=$(docker ps --filter "name=ddns-go" --format "{{.Names}}")
+#         if [ "$container" == "ddns-go" ]; then
+#             echo "ddns-go 容器正在运行，停止容器..."
+#             docker stop ddns-go
+#         fi
+#         mkdir -p ddns-go
+#         download "$localFilePath/$ddnsgo_config_path" "$oneDriveBackupFolder/$ddnsgo_config_path"
+#         download "$localFilePath/$ddnsgo_composefile_path" "$oneDriveBackupFolder/$ddnsgo_composefile_path"
+#         docker compose -f "$localFilePath/$ddnsgo_composefile_path" up -d
+#         ;;
+#     "semaphore")
+#         echo "恢复semaphore备份文件"
+#         # 检查 semaphore 容器是否在运行
+#         container=$(docker ps --filter "name=semaphore" --format "{{.Names}}")
+#         if [ "$container" == "semaphore" ]; then
+#             echo "semaphore 容器正在运行，停止容器..."
+#             docker stop semaphore
+#         fi
+#         mkdir -p semaphore
+#         download "$localFilePath/$semaphore_config_path" "$oneDriveBackupFolder/$semaphore_config_path"
+#         download "$localFilePath/$semaphore_database_path" "$oneDriveBackupFolder/$semaphore_database_path"
+#         download "$localFilePath/$semaphore_composefile_path" "$oneDriveBackupFolder/$semaphore_composefile_path"
+#         docker compose -f "$localFilePath/$semaphore_composefile_path" up -d
+#         ;;
+#     *)
+#         echo "未匹配到任何恢复数据名"
+#         ;;
+#   esac
 
 
 
