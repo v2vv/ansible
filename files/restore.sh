@@ -82,7 +82,7 @@ case $backup_soft_name in
     "alist")
         echo "恢复alist备份文件"
         # 检查 alist 容器是否在运行
-        container=$(docker ps --filter "name=alist" --format "{{.Names}}")
+        container=$(docker ps -a --filter "name=alist" --format "{{.Names}}")
         if [ "$container" == "alist" ]; then
             echo "alist 容器正在运行，停止容器..."
             docker stop alist
@@ -98,7 +98,7 @@ case $backup_soft_name in
     "ddns-go")
         echo "恢复ddns-go备份文件"
         # 检查 ddns-go 容器是否在运行
-        container=$(docker ps --filter "name=ddns-go" --format "{{.Names}}")
+        container=$(docker ps -a --filter "name=ddns-go" --format "{{.Names}}")
         if [ "$container" == "ddns-go" ]; then
             echo "ddns-go 容器正在运行，停止容器..."
             docker stop ddns-go
@@ -113,7 +113,7 @@ case $backup_soft_name in
     "semaphore")
         echo "恢复semaphore备份文件"
         # 检查 semaphore 容器是否在运行
-        container=$(docker ps --filter "name=semaphore" --format "{{.Names}}")
+        container=$(docker ps -a --filter "name=semaphore" --format "{{.Names}}")
         if [ "$container" == "semaphore" ]; then
             echo "semaphore 容器正在运行，停止容器..."
             docker stop semaphore
