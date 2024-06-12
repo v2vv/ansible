@@ -1,14 +1,14 @@
 - name: 安装运行 alist
   include_tasks: alist.yaml
-  when: {{backup_soft_name}} is "alist"
+  when: backup_soft_name == "alist"
 
 - name: 安装运行 ddns-go
   include_tasks: ddns-go.yaml
-  when: {{backup_soft_name}} is "ddns-go"
+  when: backup_soft_name == "ddns-go"
 
 - name: 安装运行 semaphore
   include_tasks: semaphore.yaml
-  when: {{backup_soft_name}} is "semaphore"
+  when: backup_soft_name == "semaphore"
 
 # - name: backup alist ,停止容器后备份
 #   block:

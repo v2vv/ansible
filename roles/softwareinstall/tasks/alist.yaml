@@ -15,7 +15,7 @@
   shell: |
         # 检查 {{backup_soft_name}} 容器是否在运行
         container=$(docker ps -a --filter "name={{backup_soft_name}}" --format "{% raw %}{{.Names}}{% endraw %}")
-        if [ "$container" == "{{backup_soft_name}}" ]; then
+        if [[ "$container" == "{{backup_soft_name}}" ]]; then
             echo "{{backup_soft_name}} 容器正在运行，停止容器..."
             docker stop {{backup_soft_name}}
             echo "删除 {{backup_soft_name}} 容器."
