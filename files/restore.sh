@@ -86,6 +86,7 @@ case $backup_soft_name in
         if [ "$container" == "alist" ]; then
             echo "alist 容器正在运行，停止容器..."
             docker stop alist
+            echo "删除 alist 容器."
             docker rm  alist
         fi
         mkdir -p alist
@@ -97,11 +98,12 @@ case $backup_soft_name in
         ;;
     "ddns-go")
         echo "恢复ddns-go备份文件"
-        # 检查 ddns-go 容器是否在运行
+        # 检查 ddns-go 容器是否存在
         container=$(docker ps -a --filter "name=ddns-go" --format "{{.Names}}")
         if [ "$container" == "ddns-go" ]; then
             echo "ddns-go 容器正在运行，停止容器..."
             docker stop ddns-go
+            echo "删除 ddns-go 容器."
             docker rm  ddns-go
         fi
         mkdir -p ddns-go
@@ -117,6 +119,7 @@ case $backup_soft_name in
         if [ "$container" == "semaphore" ]; then
             echo "semaphore 容器正在运行，停止容器..."
             docker stop semaphore
+            echo "删除 semaphore 容器."
             docker rm  semaphore
         fi
         mkdir -p semaphore
