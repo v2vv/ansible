@@ -1,6 +1,6 @@
 - name: 创建同步文件夹
   ansible.builtin.file:
-    path: $HOME/sync
+    path: $HOME/cronbackup
     state: directory
     mode: '0666'
 
