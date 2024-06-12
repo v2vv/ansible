@@ -16,7 +16,7 @@ alist_config_Path='alist/config.json'
 alist_data_path='alist/data.db'
 alist_composefile_path='alist/docker-compose.yaml'
 
-ddnsgo_config_path='ddns-go/.ddns-go_config.yaml'
+ddnsgo_config_path='ddns-go/.ddns_go_config.yaml'
 ddnsgo_composefile_path='ddns-go/docker-compose.yaml'
 
 semaphore_config_path='semaphore/config.json'
@@ -52,23 +52,24 @@ download(){
     response=$(curl --location --request GET "https://graph.microsoft.com/v1.0/users/me@lvhongyuan.site/drive/root:/$2:/content" \
     --header "Authorization: Bearer $access_token" \
     --header 'User-Agent: Apifox/1.0.0 (https://apifox.com)' \
-    --output "$1")
+    --output "$1" \
+    -w "%{http_code}" \
+    -o /dev/null)
 
     # 检查响应状态码并输出相应信息
-    http_status=$(echo "$response" | grep HTTP | awk '{print $2}')
-    if [ "$http_status" -eq 200 ]; then
+    if [ "$response" -eq 200 ]; then
         echo "文件下载成功 保存路径 $1"
-    elif [ "$http_status" -eq 404 ]; then
+    elif [ "$response" -eq 404 ]; then
         echo "onedrive $2 文件不存在"
     else
-        echo "下载失败，状态码：$http_status"
+        echo "下载失败，状态码：$response"
     fi
 }
 
-# restore alist
+# mkdir -p $localFilePath/ddns-go
+# download "$localFilePath/$ddnsgo_config_path" "$oneDriveBackupFolder/$ddnsgo_config_path"
 
-
-echo '开始备份'
+echo '开始恢复'
 
 case $backup_soft_name in
     "alist")
