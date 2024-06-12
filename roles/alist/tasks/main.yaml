@@ -35,7 +35,7 @@
 #   tags: install_alist
 
 - name: docker Install alist
-  ansible.builtin.raw: docker compose up -d
+  ansible.builtin.raw: docker compose -f $HOME/alist/docker-compose.yaml up -d
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
   tags: install_alist
