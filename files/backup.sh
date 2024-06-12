@@ -16,7 +16,7 @@ alist_config_Path='alist/config.json'
 alist_data_path='alist/data.db'
 alist_composefile_path='alist/docker-compose.yaml'
 
-ddnsgo_config_path='ddns-go/.ddns-go_config.yaml'
+ddnsgo_config_path='ddns-go/.ddns_go_config.yaml'
 ddnsgo_composefile_path='ddns-go/docker-compose.yaml'
 
 semaphore_config_path='semaphore/config.json'
