@@ -77,9 +77,55 @@ upload(){
     if [ $response -eq 200 ]; then
     echo "文件上传成功"
     elif [ $response -eq 201 ]; then
-    echo "文件创建成功"
+    echo "文件上传并创建成功"
     else
     echo "上传失败，状态码：$response"
+    fi
+}
+
+
+alist_backup(){
+    # 上传 alist
+    if [[ -e $localFilePath/$alist_config_Path ]]; then
+        echo "alist Backup File exists."
+        docker stop alist
+        upload $localFilePath/$alist_config_Path $(urlencode $oneDriveBackupFolder)/$alist_config_Path
+        upload $localFilePath/$alist_data_path $(urlencode $oneDriveBackupFolder)/$alist_data_path
+        upload $localFilePath/$alist_composefile_path $(urlencode $oneDriveBackupFolder)/$alist_composefile_path
+        docker start alist
+    else
+        echo -e "${YELLOW}alist Backup File does not exist.${NC}"
+        # echo "alist Backup File does not exist."
+    fi
+}
+
+ddns_go_backup(){
+    # 上传 ddns-go
+    if [[ -e $localFilePath/$ddnsgo_config_path ]]; then
+        echo "ddns-go Backup File exists."
+        # echo $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
+        # upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
+        # echo $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
+        # upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
+        upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
+        upload $localFilePath/$ddnsgo_composefile_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path
+    else
+        echo -e "${YELLOW}ddns-go Backup File $localFilePath/$ddnsgo_config_path does not exist.${NC}"
+        # echo "ddns-go Backup File does not exist."
+    fi
+
+}
+
+demaphore(){
+    # 上传 semaphore
+    if [[ -e $localFilePath/$semaphore_config_path ]]; then
+        echo "semaphore Backup File exists."
+        upload $localFilePath/$semaphore_config_path $(urlencode $oneDriveBackupFolder)/$semaphore_config_path
+        upload $localFilePath/$semaphore_database_path $(urlencode $oneDriveBackupFolder)/$semaphore_database_path
+        upload $localFilePath/$semaphore_composefile_path $(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path
+    else
+        echo -e "${YELLOW}semaphore Backup File does not exist.${NC}"
+        # echo "semaphore Backup File does not exist."
     fi
 }
 
@@ -87,53 +133,23 @@ echo '开始备份'
 
 case  $backup_soft_name in
     "alist")
-        # 上传 alist
-        if [[ -e $localFilePath/$alist_config_Path ]]; then
-            echo "alist Backup File exists."
-            docker stop alist
-            upload $localFilePath/$alist_config_Path $(urlencode $oneDriveBackupFolder)/$alist_config_Path
-            upload $localFilePath/$alist_data_path $(urlencode $oneDriveBackupFolder)/$alist_data_path
-            upload $localFilePath/$alist_composefile_path $(urlencode $oneDriveBackupFolder)/$alist_composefile_path
-            docker start alist
-        else
-            echo -e "${YELLOW}alist Backup File does not exist.${NC}"
-            # echo "alist Backup File does not exist."
-        fi
+        alist_backup
         ;;
     "ddns-go")
-        # 上传 ddns-go
-        if [[ -e $localFilePath/$ddnsgo_config_path ]]; then
-            echo "ddns-go Backup File exists."
-            # echo $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
-            # upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
-            # echo $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
-            # upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
-            upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
-            upload $localFilePath/$ddnsgo_composefile_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path
-        else
-            echo -e "${YELLOW}ddns-go Backup File $localFilePath/$ddnsgo_config_path does not exist.${NC}"
-            # echo "ddns-go Backup File does not exist."
-        fi
+        ddns_go_backup
         ;;
     "semaphore")
-        # 上传 semaphore
-        if [[ -e $localFilePath/$semaphore_config_path ]]; then
-            echo "semaphore Backup File exists."
-            upload $localFilePath/$semaphore_config_path $(urlencode $oneDriveBackupFolder)/$semaphore_config_path
-            upload $localFilePath/$semaphore_database_path $(urlencode $oneDriveBackupFolder)/$semaphore_database_path
-            upload $localFilePath/$semaphore_composefile_path $(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path
-        else
-            echo -e "${YELLOW}semaphore Backup File does not exist.${NC}"
-            # echo "semaphore Backup File does not exist."
-        fi
-
-        echo '备份完成'
+        demaphore
         ;;
+    "all")
+        alist_backup
+        ddns_go_backup
+        demaphore
     *)
         echo "未匹配到任何备份名"
         ;;
   esac
-
+echo '备份完成'
 
 
 
