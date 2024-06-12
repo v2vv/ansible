@@ -56,10 +56,10 @@ fi
 
 
 
-# urlencode() {
-#     src_url=$(echo -n "$1" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
-#     echo $src_url
-# }
+urlencode() {
+    src_url=$(echo -n "$1" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
+    echo $src_url
+}
 
 # $1 localFilePath
 # $2 oneDrivePath 
@@ -91,9 +91,9 @@ case  $backup_soft_name in
         if [[ -e $localFilePath/$alist_config_Path ]]; then
             echo "alist Backup File exists."
             docker stop alist
-            upload $localFilePath/$alist_config_Path $oneDriveBackupFolder/$alist_config_Path
-            upload $localFilePath/$alist_data_path $oneDriveBackupFolder/$alist_data_path
-            upload $localFilePath/$alist_composefile_path $oneDriveBackupFolder/$alist_composefile_path
+            upload $localFilePath/$alist_config_Path $(urlencode $oneDriveBackupFolder)/$alist_config_Path
+            upload $localFilePath/$alist_data_path $(urlencode $oneDriveBackupFolder)/$alist_data_path
+            upload $localFilePath/$alist_composefile_path $(urlencode $oneDriveBackupFolder)/$alist_composefile_path
             docker start alist
         else
             echo -e "${YELLOW}alist Backup File does not exist.${NC}"
@@ -108,8 +108,8 @@ case  $backup_soft_name in
             # upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
             # echo $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
             # upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
-            upload $localFilePath/$ddnsgo_config_path $oneDriveBackupFolder/$ddnsgo_config_path
-            upload $localFilePath/$ddnsgo_composefile_path $oneDriveBackupFolder/$ddnsgo_composefile_path
+            upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
+            upload $localFilePath/$ddnsgo_composefile_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path
         else
             echo -e "${YELLOW}ddns-go Backup File $localFilePath/$ddnsgo_config_path does not exist.${NC}"
             # echo "ddns-go Backup File does not exist."
@@ -119,9 +119,9 @@ case  $backup_soft_name in
         # 上传 semaphore
         if [[ -e $localFilePath/$semaphore_config_path ]]; then
             echo "semaphore Backup File exists."
-            upload $localFilePath/$semaphore_config_path $oneDriveBackupFolder/$semaphore_config_path
-            upload $localFilePath/$semaphore_database_path $oneDriveBackupFolder/$semaphore_database_path
-            upload $localFilePath/$semaphore_composefile_path $oneDriveBackupFolder/$semaphore_composefile_path
+            upload $localFilePath/$semaphore_config_path $(urlencode $oneDriveBackupFolder)/$semaphore_config_path
+            upload $localFilePath/$semaphore_database_path $(urlencode $oneDriveBackupFolder)/$semaphore_database_path
+            upload $localFilePath/$semaphore_composefile_path $(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path
         else
             echo -e "${YELLOW}semaphore Backup File does not exist.${NC}"
             # echo "semaphore Backup File does not exist."
