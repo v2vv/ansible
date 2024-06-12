@@ -93,7 +93,7 @@ fi
 
 # restore ddns-go
 
-echo "restore alist Backup File"
+echo "restore ddns-go Backup File"
 # 检查 ddns-go 容器是否在运行
 container=$(docker ps --filter "name=ddns-go" --format "{{.Names}}")
 if [ "$container" == "ddns-go" ]; then

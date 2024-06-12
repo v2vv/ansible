@@ -66,8 +66,9 @@ download(){
     fi
 }
 
-# mkdir -p $localFilePath/ddns-go
-# download "$localFilePath/$ddnsgo_config_path" "$oneDriveBackupFolder/$ddnsgo_config_path"
+mkdir -p ddns-go
+download "$localFilePath/$ddnsgo_config_path" "$oneDriveBackupFolder/$ddnsgo_config_path"
+download "$localFilePath/$ddnsgo_composefile_path" "$oneDriveBackupFolder/$ddnsgo_composefile_path"
 
 echo '开始恢复'
 
@@ -117,6 +118,9 @@ case $backup_soft_name in
         echo "未匹配到任何恢复数据名"
         ;;
   esac
+
+
+
 
 
 
