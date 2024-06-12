@@ -21,7 +21,7 @@
   shell: crontab $HOME/backup/my_cron_job
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
-  tags: backup
+  tags: sync
 
 
 # - name: backup alist ,停止容器后备份

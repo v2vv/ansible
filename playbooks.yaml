@@ -24,8 +24,8 @@
     - role: semaphore
       tags: install_semaphore
 
-    - role: backup
-      tags: backup
+    - role: sync
+      tags: sync
 
   # tasks:
   #   - name: Import the example
