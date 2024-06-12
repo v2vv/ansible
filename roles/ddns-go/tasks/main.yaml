@@ -6,7 +6,7 @@
 
 - name: 上传恢复数据脚本
   copy:
-    src: restore.sh
+    src: roles/cronbackup/files/restore.sh
     dest: $HOME/sync/restore.sh
     mode: '0755'
 
