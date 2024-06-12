@@ -15,17 +15,9 @@
     - role: vscodeTunnel
       tags: vscodetunnel
 
-    - role: alist
-      tags: install_alist
+    - role: softwareinstall
+      tags: softwareinstall
 
-    - role: ddns-go
-      tags: install_ddns-go
-
-    - role: semaphore
-      tags: install_semaphore
-
-    - role: sync
-      tags: sync
 
   # tasks:
   #   - name: Import the example
