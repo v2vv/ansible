@@ -13,14 +13,14 @@ tenant_id=$5
 
 alist_config_Path='alist/config.json'
 alist_data_path='alist/data.db'
-alist_dockercomposefile_path='alist/ocker-compose.yaml'
+alist_composefile_path='alist/docker-compose.yaml'
 
 ddnsgo_config_path='ddns-go/.ddns-go_config.yaml'
-ddnsgo_dockercomposefile_path='ddns-go/ocker-compose.yaml'
+ddnsgo_composefile_path='ddns-go/docker-compose.yaml'
 
 semaphore_config_path='semaphore/config.json'
 semaphore_database_path='semaphore/database.boltdb'
-semaphore_dockercomposefile_path='semaphore/docker-compose.yaml'
+semaphore_composefile_path='semaphore/docker-compose.yaml'
 
 echo "localFilePath $localFilePath"
 echo "oneDrivePath $oneDrivePath"
@@ -88,7 +88,7 @@ if [[ -e $localFilePath/$alist_config_Path ]]; then
     docker stop alist
     upload $localFilePath/$alist_config_Path $oneDriveBackupFolder/$alist_config_Path
     upload $localFilePath/$alist_data_path $oneDriveBackupFolder/$alist_data_path
-    upload $localFilePath/$alist_dockercomposefile_path $oneDriveBackupFolder/$alist_dockercomposefile_path
+    upload $localFilePath/$alist_composefile_path $oneDriveBackupFolder/$alist_composefile_path
     docker start alist
 else
     echo -e "${YELLOW}alist Backup File does not exist.${NC}"
@@ -105,7 +105,7 @@ if [[ -e $localFilePath/$ddnsgo_config_path ]]; then
     # echo $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
     # upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
     upload $localFilePath/$ddnsgo_config_path $oneDriveBackupFolder/$ddnsgo_config_path
-    upload $localFilePath/$ddnsgo_dockercomposefile_path $oneDriveBackupFolder/$ddnsgo_dockercomposefile_path
+    upload $localFilePath/$ddnsgo_composefile_path $oneDriveBackupFolder/$ddnsgo_composefile_path
 else
     echo -e "${YELLOW}ddns-go Backup File $localFilePath/$ddnsgo_config_path does not exist.${NC}"
     # echo "ddns-go Backup File does not exist."
@@ -117,7 +117,7 @@ if [[ -e $localFilePath/$semaphore_config_path ]]; then
     echo "semaphore Backup File exists."
     upload $localFilePath/$semaphore_config_path $oneDriveBackupFolder/$semaphore_config_path
     upload $localFilePath/$semaphore_database_path $oneDriveBackupFolder/$semaphore_database_path
-    upload $localFilePath/$semaphore_dockercomposefile_path $oneDriveBackupFolder/$semaphore_dockercomposefile_path
+    upload $localFilePath/$semaphore_composefile_path $oneDriveBackupFolder/$semaphore_composefile_path
 else
     echo -e "${YELLOW}semaphore Backup File does not exist.${NC}"
     # echo "semaphore Backup File does not exist."
