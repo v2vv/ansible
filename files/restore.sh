@@ -45,6 +45,11 @@ else
   echo -e "${YELLOW}警告：授权失败${NC}"
 fi
 
+urlencode() {
+    src_url=$(echo -n "$1" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
+    echo $src_url
+}
+
 
 # localFilePath $1
 # oneDriveBackupFolder $2
@@ -68,7 +73,7 @@ download(){
 }
 
 mkdir -p ddns-go
-download "$localFilePath/$ddnsgo_config_path" "$oneDriveBackupFolder/$ddnsgo_config_path"
+download "$localFilePath/$ddnsgo_config_path" "$(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path"
 download "$localFilePath/$ddnsgo_composefile_path" "$oneDriveBackupFolder/$ddnsgo_composefile_path"
 
 # echo '开始恢复'
