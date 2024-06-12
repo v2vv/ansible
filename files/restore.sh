@@ -86,11 +86,13 @@ case $backup_soft_name in
         if [ "$container" == "alist" ]; then
             echo "alist 容器正在运行，停止容器..."
             docker stop alist
+            docker rm  alist
         fi
         mkdir -p alist
         download "$localFilePath/$alist_config_Path" "$(urlencode $oneDriveBackupFolder)/$alist_config_Path"
         download "$localFilePath/$alist_data_path" "$(urlencode $oneDriveBackupFolder)/$alist_data_path"
         download "$localFilePath/$alist_composefile_path" "$(urlencode $oneDriveBackupFolder)/$alist_composefile_path"
+        echo "开始运行 alist 容器"
         docker compose -f "$localFilePath/$alist_composefile_path" up -d
         ;;
     "ddns-go")
@@ -100,10 +102,12 @@ case $backup_soft_name in
         if [ "$container" == "ddns-go" ]; then
             echo "ddns-go 容器正在运行，停止容器..."
             docker stop ddns-go
+            docker rm  ddns-go
         fi
         mkdir -p ddns-go
         download "$localFilePath/$ddnsgo_config_path" "$(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path"
         download "$localFilePath/$ddnsgo_composefile_path" "$(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path"
+        echo "开始运行 ddns-go 容器"
         docker compose -f "$localFilePath/$ddnsgo_composefile_path" up -d
         ;;
     "semaphore")
@@ -113,11 +117,13 @@ case $backup_soft_name in
         if [ "$container" == "semaphore" ]; then
             echo "semaphore 容器正在运行，停止容器..."
             docker stop semaphore
+            docker rm  semaphore
         fi
         mkdir -p semaphore
         download "$localFilePath/$semaphore_config_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_config_path"
         download "$localFilePath/$semaphore_database_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_database_path"
         download "$localFilePath/$semaphore_composefile_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path"
+        echo "开始运行 semaphore 容器"
         docker compose -f "$localFilePath/$semaphore_composefile_path" up -d
         ;;
     *)
