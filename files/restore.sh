@@ -52,14 +52,16 @@ download(){
     response=$(curl --location --request GET "https://graph.microsoft.com/v1.0/users/me@lvhongyuan.site/drive/root:/$2:/content" \
     --header "Authorization: Bearer $access_token" \
     --header 'User-Agent: Apifox/1.0.0 (https://apifox.com)' \
-    --output-dir "$1" )
-        # 检查响应状态码并输出相应信息
-    if [ $response -eq 200 ]; then
-    echo "文件下载成功 保存路径 $1"
-    if [ $response -eq 404 ]; then
-    echo "onedrive $2 文件不存在"
+    --output "$1")
+
+    # 检查响应状态码并输出相应信息
+    http_status=$(echo "$response" | grep HTTP | awk '{print $2}')
+    if [ "$http_status" -eq 200 ]; then
+        echo "文件下载成功 保存路径 $1"
+    elif [ "$http_status" -eq 404 ]; then
+        echo "onedrive $2 文件不存在"
     else
-    echo "上传失败，状态码：$response"
+        echo "下载失败，状态码：$http_status"
     fi
 }
 
