@@ -22,8 +22,20 @@
     dest: /root/alist/config.json
     mode: '0755'
 
+- name: copy alist docker-compose files
+  copy:
+    src: docker-compose.yaml
+    dest: /root/alist/docker-compose.yaml
+    mode: '0755'
+
+# - name: docker Install alist
+#   ansible.builtin.raw: docker run -d --restart=always -v /media/U盘:/media/U盘 -v /root/alist:/opt/alist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="alist" xhofe/alist:latest
+#   register: my_output # <- Registers the command output.
+#   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+#   tags: install_alist
+
 - name: docker Install alist
-  ansible.builtin.raw: docker run -d --restart=always -v /media/U盘:/media/U盘 -v /root/alist:/opt/alist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="alist" xhofe/alist:latest
+  ansible.builtin.raw: docker compose up -d
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
   tags: install_alist

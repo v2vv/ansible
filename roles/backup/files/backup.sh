@@ -18,6 +18,7 @@ ddnsgo_config_path='ddns-go/.ddns-go_config.yaml'
 
 semaphore_config_path='semaphore/config.json'
 semaphore_database_path='semaphore/database.boltdb'
+semaphore_composefile_path='semaphore/docker-compose.yaml'
 
 echo "localFilePath $localFilePath"
 echo "oneDrivePath $oneDrivePath"
@@ -112,6 +113,7 @@ if [[ -e $localFilePath/$semaphore_config_path ]]; then
     echo "semaphore Backup File exists."
     upload $localFilePath/$semaphore_config_path $oneDriveBackupFolder/$semaphore_config_path
     upload $localFilePath/$semaphore_database_path $oneDriveBackupFolder/$semaphore_database_path
+    upload $localFilePath/$semaphore_composefile_path $oneDriveBackupFolder/$semaphore_composefile_path
 else
     echo -e "${YELLOW}semaphore Backup File does not exist.${NC}"
     # echo "semaphore Backup File does not exist."
