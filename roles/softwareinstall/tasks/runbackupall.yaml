@@ -11,7 +11,7 @@
     mode: '0755'
 
 - name: 运行备份全部
-  shell: $HOME/backup/backup.sh  {{localFilePath}} {{oneDrivePath}} {{client_id}} {{client_secret}} {{tenant_id}} {{runbackupall}}
+  shell: $HOME/backup/backup.sh  {{localFilePath}} {{oneDrivePath}} {{client_id}} {{client_secret}} {{tenant_id}} {{backup_soft_name}}
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
   tags: backup
