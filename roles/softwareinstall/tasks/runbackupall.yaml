@@ -10,14 +10,8 @@
     dest: $HOME/backup/backup.sh
     mode: '0755'
 
-- name: 上传定时任务文件
-  ansible.builtin.template:
-    src: my_cron_job
-    dest: $HOME/backup/{{backup_soft_name}}_cron_job
-    mode: '0666'
-
-- name: 添加定时任务
-  shell: crontab $HOME/backup/{{backup_soft_name}}_cron_job
+- name: 运行备份全部
+  shell: $HOME/backup/backup.sh  {{localFilePath}} {{oneDrivePath}} {{client_id}} {{client_secret}} {{tenant_id}} {{backupall}}
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
-  tags: sync
+  tags: backup

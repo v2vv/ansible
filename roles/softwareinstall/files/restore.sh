@@ -23,6 +23,17 @@ semaphore_config_path='semaphore/config.json'
 semaphore_database_path='semaphore/database.boltdb'
 semaphore_composefile_path='semaphore/docker-compose.yaml'
 
+
+
+# Check if xxd is installed
+if dpkg -l | grep -q xxd; then
+    echo "xxd is installed."
+else
+    echo "xxd is not installed."
+    echo "安装 xxd"
+    apt install xxd -y
+fi
+
 echo '正在获取授权'
 # 使用 curl 发送 POST 请求
 response=$(curl --location --request POST "https://login.microsoftonline.com/$tenant_id/oauth2/v2.0/token" \

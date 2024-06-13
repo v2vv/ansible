@@ -52,10 +52,6 @@ else
   echo -e "${YELLOW}警告：授权失败${NC}"
 fi
 
-
-
-
-
 urlencode() {
     src_url=$(echo -n "$1" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
     echo $src_url
@@ -103,12 +99,14 @@ ddns_go_backup(){
     # 上传 ddns-go
     if [[ -e $localFilePath/$ddnsgo_config_path ]]; then
         echo "ddns-go Backup File exists."
+        docker stop {{backup_soft_name}}
         # echo $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
         # upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
         # echo $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
         # upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
         upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
         upload $localFilePath/$ddnsgo_composefile_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path
+        docker start {{backup_soft_name}}
     else
         echo -e "${YELLOW}ddns-go Backup File $localFilePath/$ddnsgo_config_path does not exist.${NC}"
         # echo "ddns-go Backup File does not exist."
@@ -141,7 +139,7 @@ case  $backup_soft_name in
     "semaphore")
         demaphore
         ;;
-    "all")
+    "backupall")
         alist_backup
         ddns_go_backup
         demaphore
