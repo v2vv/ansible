@@ -11,7 +11,7 @@
   when: backup_soft_name == "semaphore"
 
 - name: 立刻全部备份
-  include_tasks: backup.yaml
+  include_tasks: runbackupall.yaml
   when: backup_soft_name == "runbackupall"
 
 # - name: backup alist ,停止容器后备份
