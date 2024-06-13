@@ -24,10 +24,20 @@ semaphore_database_path='semaphore/database.boltdb'
 semaphore_composefile_path='semaphore/docker-compose.yaml'
 
 echo "localFilePath $localFilePath"
-echo "oneDrivePath $oneDrivePath"
+echo "oneDriveBackupFolder $oneDriveBackupFolder"
 # echo $client_id
 # echo $client_secret
 # echo $tenant_id
+
+
+# Check if xxd is installed
+if dpkg -l | grep -q xxd; then
+    echo "xxd is installed."
+else
+    echo "xxd is not installed."
+    echo "安装 xxd"
+    apt install xxd -y
+fi
 
 
 echo '正在获取授权'
@@ -50,6 +60,7 @@ if [ -n "$access_token" ]; then
     # echo "Access Token: $access_token"
 else
   echo -e "${YELLOW}警告：授权失败${NC}"
+  exit 1
 fi
 
 urlencode() {
@@ -84,11 +95,9 @@ alist_backup(){
     # 上传 alist
     if [[ -e $localFilePath/$alist_config_Path ]]; then
         echo "alist Backup File exists."
-        docker stop alist
         upload $localFilePath/$alist_config_Path $(urlencode $oneDriveBackupFolder)/$alist_config_Path
         upload $localFilePath/$alist_data_path $(urlencode $oneDriveBackupFolder)/$alist_data_path
         upload $localFilePath/$alist_composefile_path $(urlencode $oneDriveBackupFolder)/$alist_composefile_path
-        docker start alist
     else
         echo -e "${YELLOW}alist Backup File does not exist.${NC}"
         # echo "alist Backup File does not exist."
@@ -114,7 +123,7 @@ ddns_go_backup(){
 
 }
 
-demaphore(){
+semaphore_backup(){
     # 上传 semaphore
     if [[ -e $localFilePath/$semaphore_config_path ]]; then
         echo "semaphore Backup File exists."
