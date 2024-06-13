@@ -139,7 +139,7 @@ case  $backup_soft_name in
     "semaphore")
         demaphore
         ;;
-    "backupall")
+    "runbackupall")
         alist_backup
         ddns_go_backup
         demaphore
