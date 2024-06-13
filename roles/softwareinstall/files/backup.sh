@@ -152,6 +152,7 @@ case  $backup_soft_name in
         alist_backup
         ddns_go_backup
         demaphore
+        ;;
     *)
         echo "未匹配到任何备份名"
         ;;
