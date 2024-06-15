@@ -136,7 +136,7 @@ semaphore_backup(){
     fi
 }
 
-echo '开始备份'
+echo '开始备份 $(date +”%Y/%m/%d/%H:%M:%S”)'
 
 case  $backup_soft_name in
     "alist")
