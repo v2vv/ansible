@@ -3,3 +3,4 @@ ansible.log
 tmp
 .ipynb_checkpoints
 *.env
+*env.json
