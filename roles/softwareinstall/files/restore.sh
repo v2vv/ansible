@@ -153,6 +153,11 @@ case $backup_soft_name in
     "semaphore")
         semaphore_restore
         ;;
+    "restore_all")
+        alist_restore
+        ddns_go_restore
+        semaphore_restore
+        ;;
     *)
         echo "未匹配到任何恢复数据名"
         ;;
