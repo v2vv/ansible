@@ -83,6 +83,60 @@ download(){
     fi
 }
 
+
+alist_restore(){
+    echo "恢复alist备份文件"
+    # 检查 alist 容器是否在运行
+    # container=$(docker ps -a --filter "name=alist" --format "{{.Names}}")
+    # if [ "$container" == "alist" ]; then
+    #     echo "alist 容器正在运行，停止容器..."
+    #     docker stop alist
+    #     echo "删除 alist 容器."
+    #     docker rm  alist
+    # fi
+    # mkdir -p alist
+    download "$localFilePath/$alist_config_Path" "$(urlencode $oneDriveBackupFolder)/$alist_config_Path"
+    download "$localFilePath/$alist_data_path" "$(urlencode $oneDriveBackupFolder)/$alist_data_path"
+    download "$localFilePath/$alist_composefile_path" "$(urlencode $oneDriveBackupFolder)/$alist_composefile_path"
+    # echo "开始运行 alist 容器"
+    # docker compose -f "$localFilePath/$alist_composefile_path" up -d
+}
+
+ddns_go_restore(){
+    echo "恢复ddns-go备份文件"
+    # 检查 ddns-go 容器是否存在
+    container=$(docker ps -a --filter "name=ddns-go" --format "{{.Names}}")
+    if [ "$container" == "ddns-go" ]; then
+        echo "ddns-go 容器正在运行，停止容器..."
+        docker stop ddns-go
+        echo "删除 ddns-go 容器."
+        docker rm  ddns-go
+    fi
+    mkdir -p ddns-go
+    download "$localFilePath/$ddnsgo_config_path" "$(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path"
+    download "$localFilePath/$ddnsgo_composefile_path" "$(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path"
+    echo "开始运行 ddns-go 容器"
+    docker compose -f "$localFilePath/$ddnsgo_composefile_path" up -d
+}
+
+semaphore_restore(){
+    echo "恢复semaphore备份文件"
+    # 检查 semaphore 容器是否在运行
+    container=$(docker ps -a --filter "name=semaphore" --format "{{.Names}}")
+    if [ "$container" == "semaphore" ]; then
+        echo "semaphore 容器正在运行，停止容器..."
+        docker stop semaphore
+        echo "删除 semaphore 容器."
+        docker rm  semaphore
+    fi
+    mkdir -p semaphore
+    download "$localFilePath/$semaphore_config_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_config_path"
+    download "$localFilePath/$semaphore_database_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_database_path"
+    download "$localFilePath/$semaphore_composefile_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path"
+    echo "开始运行 semaphore 容器"
+    docker compose -f "$localFilePath/$semaphore_composefile_path" up -d
+}
+
 # mkdir -p ddns-go
 # download "$localFilePath/$ddnsgo_config_path" "$(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path"
 # download "$localFilePath/$ddnsgo_composefile_path" "$oneDriveBackupFolder/$ddnsgo_composefile_path"
@@ -91,54 +145,13 @@ echo '开始恢复'
 
 case $backup_soft_name in
     "alist")
-        echo "恢复alist备份文件"
-        # 检查 alist 容器是否在运行
-        # container=$(docker ps -a --filter "name=alist" --format "{{.Names}}")
-        # if [ "$container" == "alist" ]; then
-        #     echo "alist 容器正在运行，停止容器..."
-        #     docker stop alist
-        #     echo "删除 alist 容器."
-        #     docker rm  alist
-        # fi
-        # mkdir -p alist
-        download "$localFilePath/$alist_config_Path" "$(urlencode $oneDriveBackupFolder)/$alist_config_Path"
-        download "$localFilePath/$alist_data_path" "$(urlencode $oneDriveBackupFolder)/$alist_data_path"
-        download "$localFilePath/$alist_composefile_path" "$(urlencode $oneDriveBackupFolder)/$alist_composefile_path"
-        # echo "开始运行 alist 容器"
-        # docker compose -f "$localFilePath/$alist_composefile_path" up -d
+        alist_restore
         ;;
     "ddns-go")
-        echo "恢复ddns-go备份文件"
-        # 检查 ddns-go 容器是否存在
-        container=$(docker ps -a --filter "name=ddns-go" --format "{{.Names}}")
-        if [ "$container" == "ddns-go" ]; then
-            echo "ddns-go 容器正在运行，停止容器..."
-            docker stop ddns-go
-            echo "删除 ddns-go 容器."
-            docker rm  ddns-go
-        fi
-        mkdir -p ddns-go
-        download "$localFilePath/$ddnsgo_config_path" "$(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path"
-        download "$localFilePath/$ddnsgo_composefile_path" "$(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path"
-        echo "开始运行 ddns-go 容器"
-        docker compose -f "$localFilePath/$ddnsgo_composefile_path" up -d
+        ddns_go_restore
         ;;
     "semaphore")
-        echo "恢复semaphore备份文件"
-        # 检查 semaphore 容器是否在运行
-        container=$(docker ps -a --filter "name=semaphore" --format "{{.Names}}")
-        if [ "$container" == "semaphore" ]; then
-            echo "semaphore 容器正在运行，停止容器..."
-            docker stop semaphore
-            echo "删除 semaphore 容器."
-            docker rm  semaphore
-        fi
-        mkdir -p semaphore
-        download "$localFilePath/$semaphore_config_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_config_path"
-        download "$localFilePath/$semaphore_database_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_database_path"
-        download "$localFilePath/$semaphore_composefile_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path"
-        echo "开始运行 semaphore 容器"
-        docker compose -f "$localFilePath/$semaphore_composefile_path" up -d
+        semaphore_restore
         ;;
     *)
         echo "未匹配到任何恢复数据名"
