@@ -5,11 +5,11 @@ YELLOW='\033[1;33m' # 黄色
 NC='\033[0m' # 恢复默认颜色
 
 
-localFilePath=$1
-oneDriveBackupFolder=$2
-client_id=$3
-client_secret=$4
-tenant_id=$5
+client_id=$1
+client_secret=$2
+tenant_id=$3
+localFilePath=$4
+oneDriveBackupFolder=$5
 backup_soft_name=$6
 
 alist_config_Path='alist/config.json'
