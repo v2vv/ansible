@@ -107,7 +107,7 @@ stoprunning(){
 docker_run(){
     if command -v docker >/dev/null 2>&1; then
         docker -v
-        docker compose -v
+        docker compose version
         eval "docker compose -f $1 up -d"
     else
         docker_exit="nodocker"
@@ -210,7 +210,7 @@ semaphore_restore(){
 
 restore(){
     echo '开始恢复或安装'
-    case $backup_soft_name in
+    case $1 in
         "alist")
             alist_restore
             ;;
@@ -237,7 +237,7 @@ restore(){
 check_sysem
 check_soft_env
 auth
-restore
+restore $backup_soft_name
 
 
 
