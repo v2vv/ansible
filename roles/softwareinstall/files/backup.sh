@@ -16,9 +16,6 @@ while getopts ":f:s:e:" opt; do
         # 使用命令行 backup_soft_name
         backup_soft_name="${backup_soft_name_temp:-$backup_soft_name}"
         ;;
-    s )
-        backup_soft_name="$OPTARG"
-        ;;
     e )
         # 处理 -e 选项
         IFS=',' read -r client_id client_secret tenant_id localFilePath oneDriveBackupFolder backup_soft_name <<< "$OPTARG"
