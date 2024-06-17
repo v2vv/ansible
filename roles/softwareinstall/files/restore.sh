@@ -6,7 +6,7 @@ verbose=0
 file=""
 
 # 使用 getopts 解析参数
-while getopts ":fse:" opt; do
+while getopts ":f:s:e:" opt; do
   case ${opt} in
     f )
         file="$OPTARG"
