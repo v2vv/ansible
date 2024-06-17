@@ -13,6 +13,9 @@ while getopts ":f:" opt; do
         # 读取文件中的变量值
         source "$file"
         ;;
+    s )
+        backup_soft_name="$OPTARG"
+        ;;
     e )
         client_id=$1
         client_secret=$2
@@ -137,6 +140,7 @@ auth(){
         # echo "Access Token: $access_token"
     else
     echo -e "${YELLOW}警告：授权失败${NC}"
+    exit 1
     fi
 }
 
