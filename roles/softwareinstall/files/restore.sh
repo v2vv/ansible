@@ -54,6 +54,9 @@ semaphore_config_path='semaphore/config.json'
 semaphore_database_path='semaphore/database.boltdb'
 semaphore_composefile_path='semaphore/docker-compose.yaml'
 
+uptimekuma_composefile_path='uptime-kuma/docker-compose.yaml'
+uptimekuma_database_path='uptime-kuma/kuma.db'
+
 
 check_sysem(){
     # 检查系统环境
@@ -211,6 +214,16 @@ semaphore_restore(){
     # docker compose -f "$localFilePath/$semaphore_composefile_path" up -d
 }
 
+uptime_kuma_restore(){
+    stoprunning uptime-kuma
+    mkdir -p uptime-kuma
+    download "$localFilePath/$uptimekuma_composefile_path" "$(urlencode $oneDriveBackupFolder)/$uptimekuma_composefile_path"
+    download "$localFilePath/$uptimekuma_database_path" "$(urlencode $oneDriveBackupFolder)/$uptimekuma_database_path"
+    # download "$localFilePath/$uptimekuma_composefile_path" "$(urlencode $oneDriveBackupFolder)/$uptimekuma_composefile_path"
+    echo "开始运行 semaphore 容器"
+    docker_run $localFilePath/$uptimekuma_composefile_path
+}
+
 restore(){
     echo '开始恢复或安装'
     case $1 in
@@ -222,6 +235,9 @@ restore(){
             ;;
         "semaphore")
             semaphore_restore
+            ;;
+        "uptime_kuma")
+            uptime_kuma_restore
             ;;
         "restore_all")
             alist_restore

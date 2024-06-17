@@ -57,6 +57,9 @@ semaphore_config_path='semaphore/config.json'
 semaphore_database_path='semaphore/database.boltdb'
 semaphore_composefile_path='semaphore/docker-compose.yaml'
 
+uptimekuma_composefile_path='uptime-kuma/docker-compose.yaml'
+uptimekuma_database_path='uptime-kuma/kuma.db'
+
 echo "localFilePath $localFilePath"
 echo "oneDriveBackupFolder $oneDriveBackupFolder"
 # echo $client_id
@@ -223,6 +226,19 @@ semaphore_backup(){
     fi
 }
 
+uptime_kuma_backup(){
+    # 上传 semaphore
+    if [[ -e $localFilePath/$uptimekuma_composefile_path ]]; then
+        echo "uptime-kuma Backup File exists."
+        upload $localFilePath/$uptimekuma_composefile_path $(urlencode $oneDriveBackupFolder)/$uptimekuma_composefile_path
+        upload $localFilePath/$uptimekuma_database_path $(urlencode $oneDriveBackupFolder)/$uptimekuma_database_path
+        # upload $localFilePath/$semaphore_composefile_path $(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path
+    else
+        echo -e "${YELLOW}uptime-kuma Backup File does not exist.${NC}"
+    fi
+
+}
+
 
 backup(){
     echo "开始备份 $(date +”%Y/%m/%d/%H:%M:%S”)"
@@ -234,12 +250,16 @@ backup(){
             ddns_go_backup
             ;;
         "semaphore")
-            demaphore
+            semaphore_backup
+            ;;
+        "uptime_kuma")
+            uptime_kuma_backup
             ;;
         "runbackupall")
             alist_backup
             ddns_go_backup
             demaphore
+            uptime_kuma_backup
             ;;
         *)
             echo "未匹配到任何备份名"
@@ -254,5 +274,6 @@ check_sysem
 check_soft_env
 auth
 backup $backup_soft_name
+
 
 
