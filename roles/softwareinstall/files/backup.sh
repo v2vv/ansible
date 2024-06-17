@@ -9,8 +9,10 @@ file=""
 while getopts ":f:s:e:" opt; do
   case ${opt} in
     f )
+        # file="$OPTARG"
+        # # 读取文件中的变量值
+        # source "$file"
         IFS=',' read -r file backup_soft_name_temp <<< "$OPTARG"
-        file="$OPTARG"
         # 读取文件中的变量值
         source "$file"
         # 使用命令行 backup_soft_name
