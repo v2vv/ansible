@@ -17,6 +17,7 @@ while getopts ":f:" opt; do
         backup_soft_name="$OPTARG"
         ;;
     e )
+        shift $((OPTIND -1))
         client_id=$1
         client_secret=$2
         tenant_id=$3
