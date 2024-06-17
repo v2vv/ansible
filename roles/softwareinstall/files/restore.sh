@@ -113,13 +113,13 @@ download(){
 alist_restore(){
     echo "恢复alist备份文件"
     # 检查 alist 容器是否在运行
-    # container=$(docker ps -a --filter "name=alist" --format "{{.Names}}")
-    # if [ "$container" == "alist" ]; then
-    #     echo "alist 容器正在运行，停止容器..."
-    #     docker stop alist
-    #     echo "删除 alist 容器."
-    #     docker rm  alist
-    # fi
+    container=$(docker ps -a --filter "name=alist" --format "{{.Names}}")
+    if [ "$container" == "alist" ]; then
+        echo "alist 容器正在运行，停止容器..."
+        docker stop alist
+        echo "删除 alist 容器."
+        docker rm  alist
+    fi
     mkdir -p alist
     download "$localFilePath/$alist_config_Path" "$(urlencode $oneDriveBackupFolder)/$alist_config_Path"
     download "$localFilePath/$alist_data_path" "$(urlencode $oneDriveBackupFolder)/$alist_data_path"
