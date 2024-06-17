@@ -1,1 +1,1 @@
-0 0 * * * $HOME/backup/backup.sh {{client_id}} {{client_secret}} {{tenant_id}} {{localFilePath}} {{oneDrivePath}} {{backup_soft_name}} >> $HOME/backup/{{backup_soft_name}}_cronbackup_script.log 2>&1
+0 0 * * * $HOME/backup/backup.sh -e {{client_id}},{{client_secret}},{{tenant_id}},{{localFilePath}},{{oneDrivePath}},{{backup_soft_name}} >> $HOME/backup/{{backup_soft_name}}_cronbackup_script.log 2>&1

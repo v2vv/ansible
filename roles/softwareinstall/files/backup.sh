@@ -1,16 +1,48 @@
 #!/bin/bash
+
+
+# 默认值
+verbose=0
+file=""
+
+# 使用 getopts 解析参数
+while getopts ":f:s:e:" opt; do
+  case ${opt} in
+    f )
+        file="$OPTARG"
+        # 读取文件中的变量值
+        source "$file"
+        ;;
+    s )
+        backup_soft_name="$OPTARG"
+        ;;
+    e )
+        # 处理 -e 选项
+        IFS=',' read -r client_id client_secret tenant_id localFilePath oneDriveBackupFolder backup_soft_name <<< "$OPTARG"
+        ;;
+    \? ) # 未知选项
+        echo "Usage: $0 [-f file] [-s backup_soft_name] [-e client_id,client_secret,tenant_id,localFilePath,oneDriveBackupFolder,backup_soft_name]"
+        exit 1
+        ;;
+    : ) # 缺少参数
+        echo "Option -$OPTARG requires an argument." >&2
+        exit 1
+        ;;
+  esac
+done
+shift $((OPTIND -1))
+
 # ANSI颜色码
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m' # 黄色
 NC='\033[0m' # 恢复默认颜色
 
-
-client_id=$1
-client_secret=$2
-tenant_id=$3
-localFilePath=$4
-oneDriveBackupFolder=$5
-backup_soft_name=$6
+# client_id=$1
+# client_secret=$2
+# tenant_id=$3
+# localFilePath=$4
+# oneDriveBackupFolder=$5
+# backup_soft_name=$6
 
 alist_config_Path='alist/config.json'
 alist_data_path='alist/data.db'
