@@ -6,7 +6,7 @@ verbose=0
 file=""
 
 # 使用 getopts 解析参数
-while getopts ":f:" opt; do
+while getopts ":fse:" opt; do
   case ${opt} in
     f )
         file="$OPTARG"
@@ -17,16 +17,11 @@ while getopts ":f:" opt; do
         backup_soft_name="$OPTARG"
         ;;
     e )
-        shift $((OPTIND -1))
-        client_id=$1
-        client_secret=$2
-        tenant_id=$3
-        localFilePath=$4
-        oneDriveBackupFolder=$5
-        backup_soft_name=$6
+        # 处理 -e 选项
+        IFS=',' read -r client_id client_secret tenant_id localFilePath oneDriveBackupFolder backup_soft_name <<< "$OPTARG"
         ;;
     \? ) # 未知选项
-        echo "Usage: $0 [-v] [-f file]"
+        echo "Usage: $0 [-f file] [-s backup_soft_name] [-e client_id,client_secret,tenant_id,localFilePath,oneDriveBackupFolder,backup_soft_name]"
         exit 1
         ;;
     : ) # 缺少参数
@@ -36,6 +31,7 @@ while getopts ":f:" opt; do
   esac
 done
 shift $((OPTIND -1))
+
 
 
 system_env=""
