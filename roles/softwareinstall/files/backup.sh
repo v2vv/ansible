@@ -191,7 +191,7 @@ semaphore_backup(){
 
 
 backup(){
-    echo '开始备份 $(date +”%Y/%m/%d/%H:%M:%S”)'
+    echo "开始备份 $(date +”%Y/%m/%d/%H:%M:%S”)"
     case  $1 in
         "alist")
             alist_backup
