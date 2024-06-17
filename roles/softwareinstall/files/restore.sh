@@ -1,8 +1,4 @@
 #!/bin/bash
-# ANSI颜色码
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m' # 黄色
-NC='\033[0m' # 恢复默认颜色
 
 
 # 默认值
@@ -38,6 +34,13 @@ done
 shift $((OPTIND -1))
 
 
+system_env=""
+
+# ANSI颜色码
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m' # 黄色
+NC='\033[0m' # 恢复默认颜色
+
 alist_config_Path='alist/config.json'
 alist_data_path='alist/data.db'
 alist_composefile_path='alist/docker-compose.yaml'
@@ -51,14 +54,31 @@ semaphore_composefile_path='semaphore/docker-compose.yaml'
 
 
 
-# Check if xxd is installed
-if dpkg -l | grep -q xxd; then
-    echo "xxd is installed."
-else
-    echo "xxd is not installed."
-    echo "安装 xxd"
-    apt install xxd -y
+# 检查系统环境
+if [ -f /etc/os-release ]; then
+    system_env="Linux"
+    source /etc/os-release
+    if [ "$NAME" = "Debian GNU/Linux" ]; then
+        echo "当前环境是 Debian"
+    fi
+elif [ "$MSYSTEM" = "MINGW64" ] || [ "$MSYSTEM" = "MINGW32" ]; then
+    system_env="MINGW"
+    echo "当前环境是 Git Bash"
 fi
+
+# 检查是否存在 xxd 命令
+if command -v xxd >/dev/null 2>&1; then
+    echo "xxd 工具已安装"
+else
+    if [ "$system_env" = "Linux" ]; then
+        echo "安装 xxd"
+        apt install xxd -y
+    else
+        echo "xxd 工具未安装"
+        exit 1
+    fi
+fi
+
 
 echo '正在获取授权'
 # 使用 curl 发送 POST 请求
