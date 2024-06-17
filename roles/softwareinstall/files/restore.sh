@@ -94,7 +94,7 @@ alist_restore(){
     #     echo "删除 alist 容器."
     #     docker rm  alist
     # fi
-    # mkdir -p alist
+    mkdir -p alist
     download "$localFilePath/$alist_config_Path" "$(urlencode $oneDriveBackupFolder)/$alist_config_Path"
     download "$localFilePath/$alist_data_path" "$(urlencode $oneDriveBackupFolder)/$alist_data_path"
     download "$localFilePath/$alist_composefile_path" "$(urlencode $oneDriveBackupFolder)/$alist_composefile_path"
