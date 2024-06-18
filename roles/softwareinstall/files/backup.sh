@@ -6,8 +6,37 @@ verbose=0
 file=""
 
 # 使用 getopts 解析参数
-while getopts ":e:" opt; do
+while getopts ":o:e:" opt; do
   case ${opt} in
+    o )
+        # 判断文件是否存在
+        if [ -e ".env" ]; then
+            source .env
+        else
+            echo ".env 文件不存在, 请先上传.env文件"
+            exit 1
+        fi
+        case $OPTARG in
+            1)
+                backup_soft_name=alist
+                ;;
+            2)
+                backup_soft_name=ddns-go
+                ;;
+            3)
+                backup_soft_name=semaphore
+                ;;
+            4)
+                backup_soft_name=uptime-kuma
+                ;;
+            *)
+                echo "无效的备份软件名称: $backup_soft_name" >&2
+                exit 1
+                ;;
+        esac
+        # IFS=',' read -r file backup_soft_name <<< "$OPTARG"
+        # source file
+        ;;
     e )
         # 处理 -e 选项
         # echo $OPTARG

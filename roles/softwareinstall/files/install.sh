@@ -6,8 +6,37 @@ verbose=0
 file=""
 
 # 使用 getopts 解析参数
-while getopts ":e:" opt; do
+while getopts ":o:e:h" opt; do
   case ${opt} in
+    o )
+        # 判断文件是否存在
+        if [ -e ".env" ]; then
+            source .env
+        else
+            echo ".env 文件不存在, 请先上传.env文件"
+            exit 1
+        fi
+        case $OPTARG in
+            1)
+                backup_soft_name=alist
+                ;;
+            2)
+                backup_soft_name=ddns-go
+                ;;
+            3)
+                backup_soft_name=semaphore
+                ;;
+            4)
+                backup_soft_name=uptime-kuma
+                ;;
+            *)
+                echo "无效的备份软件名称: $backup_soft_name" >&2
+                exit 1
+                ;;
+        esac
+        # IFS=',' read -r file backup_soft_name <<< "$OPTARG"
+        # source file
+        ;;
     e )
         # 处理 -e 选项
         # echo $OPTARG
@@ -15,6 +44,11 @@ while getopts ":e:" opt; do
         ;;
     \? ) # 未知选项
         echo "Usage: $0 [-f file] [-s backup_soft_name] [-e client_id,client_secret,tenant_id,localFilePath,oneDriveBackupFolder,backup_soft_name]"
+        exit 1
+        ;;
+    h ) # 未知选项
+        echo "Usage: $0 [-f file] [-s backup_soft_name] [-e client_id,client_secret,tenant_id,localFilePath,oneDriveBackupFolder,backup_soft_name]"
+        echo " -o  (1: alist, 2: ddns-go, 3: semaphore, 4: uptime-kuma)" >&2
         exit 1
         ;;
     : ) # 缺少参数
@@ -25,6 +59,9 @@ while getopts ":e:" opt; do
 done
 shift $((OPTIND -1))
 
+
+
+# 根据备份软件名称设置软件
 
 
 system_env=""
