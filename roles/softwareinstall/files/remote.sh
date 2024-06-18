@@ -99,7 +99,7 @@ case $action in
         ;;
     2)
         action="恢复"
-        script=restore.sh
+        script=install.sh
         ;;
     *)
         echo "无效的操作: $action" >&2
