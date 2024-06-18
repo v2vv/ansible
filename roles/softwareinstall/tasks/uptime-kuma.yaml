@@ -1,7 +1,7 @@
-- name: 下载应用数据
-  include_tasks: restore.yaml
+- name: 下载安装数据
+  include_tasks: install.yaml
 
-- name: 运行 {{backup_soft_name}}
+- name: 安装 {{backup_soft_name}}
   shell: docker compose -f $HOME/{{backup_soft_name}}/docker-compose.yaml up -d
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
