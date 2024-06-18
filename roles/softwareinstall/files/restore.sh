@@ -236,7 +236,7 @@ restore(){
         "semaphore")
             semaphore_restore
             ;;
-        "uptime_kuma")
+        "uptime-kuma")
             uptime_kuma_restore
             ;;
         "restore_all")
