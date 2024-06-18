@@ -156,7 +156,12 @@ hostname=$(jq -r ".ungrouped.hosts.$hosttag.ansible_host" host.json)
 hostuser=$(jq -r ".ungrouped.hosts.$hosttag.ansible_user" host.json)
 hostpw=$(jq -r ".ungrouped.hosts.$hosttag.ansible_password" host.json)
 # 复制文件到远程服务器
-scpcommand $hostname $hostuser $hostpw backup.sh restore.sh .env backup
+# scpcommand $hostname $hostuser $hostpw backup.sh restore.sh .env backup
 # 执行操作命令
-sshcommand $hostname $hostuser $hostpw "chmod +x ~/backup/$script && ~/backup/$script -f .env,$backup_soft_name"
+# sshcommand $hostname $hostuser $hostpw "chmod +x ~/backup/$script && ~/backup/$script -f .env,$backup_soft_name"
+
+# 复制文件到远程服务器
+scpcommand $hostname $hostuser $hostpw backup.sh restore.sh backup
+# 执行操作命令
+sshcommand $hostname $hostuser $hostpw "chmod +x ~/backup/$script && ~/backup/$script -e $(grep -v '^#' .env | awk -F '=' '{print $2}' | tr '\n' ',')"$backup_soft_name
 

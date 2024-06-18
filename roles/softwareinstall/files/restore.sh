@@ -20,7 +20,9 @@ while getopts ":f:s:e:" opt; do
         ;;
     e )
         # 处理 -e 选项
-        IFS=',' read -r client_id client_secret tenant_id localFilePath oneDriveBackupFolder backup_soft_name <<< "$OPTARG"
+        echo $OPTARG
+        IFS=',' read -r client_id client_secret tenant_id localFilePath oneDriveBackupFolder backup_soft_name backup_soft_name_temp <<< "$OPTARG"
+        backup_soft_name="${backup_soft_name_temp:-$backup_soft_name}"
         ;;
     \? ) # 未知选项
         echo "Usage: $0 [-f file] [-s backup_soft_name] [-e client_id,client_secret,tenant_id,localFilePath,oneDriveBackupFolder,backup_soft_name]"
