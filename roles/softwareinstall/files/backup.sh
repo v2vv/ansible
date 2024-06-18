@@ -5,52 +5,71 @@
 verbose=0
 file=""
 
-# 使用 getopts 解析参数
-while getopts ":o:e:" opt; do
-  case ${opt} in
-    o )
-        # 判断文件是否存在
-        if [ -e ".env" ]; then
-            source .env
-        else
-            echo ".env 文件不存在, 请先上传.env文件"
-            exit 1
-        fi
-        case $OPTARG in
-            1)
-                backup_soft_name=alist
-                ;;
-            2)
-                backup_soft_name=ddns-go
-                ;;
-            3)
-                backup_soft_name=semaphore
-                ;;
-            4)
-                backup_soft_name=uptime-kuma
-                ;;
-            *)
-                echo "无效的备份软件名称: $backup_soft_name" >&2
+
+# 显示帮助信息
+show_help() {
+    echo "Usage: $0 [-o option] [-e client_id,client_secret,tenant_id,localFilePath,oneDriveBackupFolder,backup_soft_name]"
+    echo ""
+    echo "  -o  选择备份软件"
+    echo "      1 - alist"
+    echo "      2 - ddns-go"
+    echo "      3 - semaphore"
+    echo "      4 - uptime-kuma"
+    echo ""
+    echo "  -e  提供 OneDrive 备份的详细信息，用逗号分隔"
+    echo "      client_id,client_secret,tenant_id,localFilePath,oneDriveBackupFolder,backup_soft_name"
+    echo ""
+    echo "  -h  显示此帮助信息"
+}
+
+while getopts ":o:e:h" opt; do
+    case ${opt} in
+        o )
+            # 判断文件是否存在
+            if [ -e ".env" ]; then
+                source .env
+            else
+                echo ".env 文件不存在, 请先上传 .env 文件"
                 exit 1
-                ;;
-        esac
-        # IFS=',' read -r file backup_soft_name <<< "$OPTARG"
-        # source file
-        ;;
-    e )
-        # 处理 -e 选项
-        # echo $OPTARG
-        IFS=',' read -r client_id client_secret tenant_id localFilePath oneDriveBackupFolder backup_soft_name <<< "$OPTARG"
-        ;;
-    \? ) # 未知选项
-        echo "Usage: $0 [-f file] [-s backup_soft_name] [-e client_id,client_secret,tenant_id,localFilePath,oneDriveBackupFolder,backup_soft_name]"
-        exit 1
-        ;;
-    : ) # 缺少参数
-        echo "Option -$OPTARG requires an argument." >&2
-        exit 1
-        ;;
-  esac
+            fi
+            case $OPTARG in
+                1)
+                    backup_soft_name="alist"
+                    ;;
+                2)
+                    backup_soft_name="ddns-go"
+                    ;;
+                3)
+                    backup_soft_name="semaphore"
+                    ;;
+                4)
+                    backup_soft_name="uptime-kuma"
+                    ;;
+                *)
+                    echo "无效的备份软件名称: $OPTARG" >&2
+                    exit 1
+                    ;;
+            esac
+            ;;
+        e )
+            # 处理 -e 选项
+            IFS=',' read -r client_id client_secret tenant_id localFilePath oneDriveBackupFolder backup_soft_name <<< "$OPTARG"
+            ;;
+        h )
+            show_help
+            exit 0
+            ;;
+        \? ) # 未知选项
+            echo "Invalid option: -$OPTARG" >&2
+            show_help
+            exit 1
+            ;;
+        : ) # 缺少参数
+            echo "Option -$OPTARG requires an argument." >&2
+            show_help
+            exit 1
+            ;;
+    esac
 done
 shift $((OPTIND -1))
 
