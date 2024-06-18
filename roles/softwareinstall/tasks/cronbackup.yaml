@@ -1,6 +1,6 @@
 - name: 创建 backup 文件夹
   ansible.builtin.file:
-    path: $HOME/backup
+    path: $HOME/backup/{{backup_soft_name}}_cron
     state: directory
     mode: '0666'
 
@@ -13,11 +13,11 @@
 - name: 上传定时任务文件
   ansible.builtin.template:
     src: my_cron_job
-    dest: $HOME/backup/{{backup_soft_name}}_cron_job
+    dest: $HOME/backup/{{backup_soft_name}}_cron/{{backup_soft_name}}_cron_job
     mode: '0666'
 
 - name: 添加定时任务
-  shell: crontab $HOME/backup/{{backup_soft_name}}_cron_job
+  shell: crontab $HOME/backup/{{backup_soft_name}}_cron/{{backup_soft_name}}_cron_job
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
   tags: sync
