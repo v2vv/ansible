@@ -25,7 +25,7 @@ while getopts ":e:" opt; do
 done
 shift $((OPTIND -1))
 
-
+echo hello
 
 system_env=""
 
