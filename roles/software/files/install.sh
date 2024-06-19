@@ -291,10 +291,11 @@ restore(){
         "uptime-kuma")
             uptime_kuma_restore
             ;;
-        "restore_all")
+        "all")
             alist_restore
             ddns_go_restore
             semaphore_restore
+            uptime_kuma_restore
             ;;
         *)
             echo "未匹配到任何恢复数据名"

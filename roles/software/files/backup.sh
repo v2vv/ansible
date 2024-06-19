@@ -302,10 +302,10 @@ backup(){
         "uptime-kuma")
             uptime_kuma_backup
             ;;
-        "runbackupall")
+        "all")
             alist_backup
             ddns_go_backup
-            demaphore
+            semaphore_backup
             uptime_kuma_backup
             ;;
         *)
