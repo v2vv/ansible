@@ -15,9 +15,8 @@
     - role: vscodeTunnel
       tags: vscodetunnel
 
-    - role: softwareinstall
-      tags: softwareinstall
-
+    - role: software
+      tags: software
 
   # tasks:
   #   - name: Import the example

@@ -1,8 +1,0 @@
-- name: 安装运行 {{backup_soft_name}}
-  include_tasks: install.yaml
-  when: backup_soft_name in ["alist", "semaphore", "ddns-go"]
-
-- name: 立刻全部备份
-  include_tasks: runbackupall.yaml
-  when: backup_soft_name == "runbackupall"
-

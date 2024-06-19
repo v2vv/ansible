@@ -1,0 +1,8 @@
+- name: 安装 {{backup_soft_name}}
+  include_tasks: install.yaml
+  when: action == "install"
+
+- name: 备份
+  include_tasks: backup.yaml
+  when: action == "backup"
+
