@@ -160,6 +160,8 @@ hostpw=$(jq -r ".ungrouped.hosts.$hosttag.ansible_password" host.json)
 source .env
 # echo $client_id $client_secret $tenant_id $localFilePath $oneDriveBackupFolder $backup_soft_name
 
+# 创建 data 文件夹
+sshcommand $hostname $hostuser $hostpw "mkdir -p data"
 # 复制文件到远程服务器
 scpcommand $hostname $hostuser $hostpw backup.sh restore.sh data
 # 执行操作命令
