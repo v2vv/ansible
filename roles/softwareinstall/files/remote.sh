@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# 获取脚本所在的目录
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+# 切换工作目录为脚本所在目录
+cd "$SCRIPT_DIR"
+
 # 检查操作系统类型
 OS_TYPE=$(uname)
 hosttag=""
