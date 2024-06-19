@@ -310,33 +310,3 @@ check_sysem
 check_soft_env
 auth
 restore $backup_soft_name
-
-
-
-
-
-
-
-# docker stop alist
-# download $localFilePath/$alist_config_Path $oneDriveBackupFolder/$alist_config_Path
-# download $localFilePath/$alist_data_path $oneDriveBackupFolder/$alist_data_path
-# download $localFilePath/$alist_composefile_path $oneDriveBackupFolder/$alist_composefile_path
-# docker start alist
-
-# restore ddns-go
-
-
-
-
-
-# restore semaphore
-
-
-
-
-# mkdir -p ddns-go
-# echo "restore alist Backup File"
-# docker stop alist
-# download $localFilePath/$ddnsgo_config_path $oneDriveBackupFolder/$ddnsgo_config_path
-# download $localFilePath/$semaphore_composefile_path $oneDriveBackupFolder/$semaphore_composefile_path
-# docker start alist
