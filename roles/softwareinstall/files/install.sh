@@ -90,7 +90,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m' # 黄色
 NC='\033[0m' # 恢复默认颜色
 
-localPath="~/data"
+localPath="$HOME/data"
 oneDriveBackupFolder="文档/backup"
 
 alist_config_Path='alist/config.json'

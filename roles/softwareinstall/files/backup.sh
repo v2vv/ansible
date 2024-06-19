@@ -90,7 +90,7 @@ NC='\033[0m' # 恢复默认颜色
 # oneDriveBackupFolder=$5
 # backup_soft_name=$6
 
-localPath="~/data"
+localPath="$HOME/data"
 oneDriveBackupFolder="文档/backup"
 
 alist_config_Path='alist/config.json'
