@@ -1,4 +1,4 @@
-- name: 安装 {{backup_soft_name}}
+- name: 安装 {{software_name}}
   include_tasks: install.yaml
   when: action == "install"
 

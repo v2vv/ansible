@@ -171,5 +171,5 @@ sshcommand $hostname $hostuser $hostpw "mkdir -p data"
 # 复制文件到远程服务器
 scpcommand $hostname $hostuser $hostpw backup.sh restore.sh data
 # 执行操作命令
-sshcommand $hostname $hostuser $hostpw "chmod +x ~/data/$script && ~/data/$script -e $client_id,$client_secret,$tenant_id,$backup_soft_name"
+sshcommand $hostname $hostuser $hostpw "chmod +x ~/data/$script && ~/data/$script -e $client_id,$client_secret,$tenant_id,$localFilePath,$oneDriveBackupFolder,$backup_soft_name"
 
