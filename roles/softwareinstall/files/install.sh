@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# 获取脚本所在的目录
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+# 切换工作目录为脚本所在目录
+cd "$SCRIPT_DIR"
 
 # 默认值
 verbose=0
