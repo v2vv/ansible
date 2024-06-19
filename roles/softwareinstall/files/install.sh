@@ -256,6 +256,8 @@ semaphore_restore(){
     download "$localFilePath/$semaphore_config_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_config_path"
     download "$localFilePath/$semaphore_database_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_database_path"
     download "$localFilePath/$semaphore_composefile_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path"
+    # 授予 "$localFilePath/$semaphore_database_path" 访问权限
+    chmod 666 "$localFilePath/$semaphore_database_path"
     echo "开始运行 semaphore 容器"
     docker_run $localFilePath/$semaphore_composefile_path
     # docker compose -f "$localFilePath/$semaphore_composefile_path" up -d
