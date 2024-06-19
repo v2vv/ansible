@@ -13,7 +13,7 @@ file=""
 
 # 显示帮助信息
 show_help() {
-    echo "Usage: $0 [-o option] [-e client_id,client_secret,tenant_id,localPath,oneDriveBackupFolder,backup_soft_name]"
+    echo "Usage: $0 [-o option] [-e client_id,client_secret,tenant_id,backup_soft_name]"
     echo ""
     echo "  -o  选择备份软件"
     echo "      1 - alist"
@@ -58,7 +58,7 @@ while getopts ":o:e:h" opt; do
             ;;
         e )
             # 处理 -e 选项
-            IFS=',' read -r client_id client_secret tenant_id localPath oneDriveBackupFolder backup_soft_name <<< "$OPTARG"
+            IFS=',' read -r client_id client_secret tenant_id backup_soft_name <<< "$OPTARG"
             ;;
         h )
             show_help

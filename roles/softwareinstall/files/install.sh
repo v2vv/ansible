@@ -22,7 +22,7 @@ show_help() {
     echo "      4 - uptime-kuma"
     echo ""
     echo "  -e  提供 OneDrive 备份的详细信息，用逗号分隔"
-    echo "      client_id,client_secret,tenant_id,localFilePath,oneDriveBackupFolder,backup_soft_name"
+    echo "      client_id,client_secret,tenant_id,backup_soft_name"
     echo ""
     echo "  -h  显示此帮助信息"
 }
@@ -58,7 +58,7 @@ while getopts ":o:e:h" opt; do
             ;;
         e )
             # 处理 -e 选项
-            IFS=',' read -r client_id client_secret tenant_id localFilePath oneDriveBackupFolder backup_soft_name <<< "$OPTARG"
+            IFS=',' read -r client_id client_secret tenant_id backup_soft_name <<< "$OPTARG"
             ;;
         h )
             show_help
