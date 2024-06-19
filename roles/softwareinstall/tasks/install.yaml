@@ -1,16 +1,25 @@
-- name: 创建同步文件夹
+- name: 创建数据文件夹
   file:
-    path: $HOME/backup
+    path: $HOME/data
     state: directory
     mode: '0666'
 
-- name: 上传恢复数据脚本
+- name: 发送安装脚本
   copy:
     src: install.sh
-    dest: $HOME/backup/install.sh
+    dest: $HOME/data/install.sh
     mode: '0755'
 
 - name: 恢复 {{backup_soft_name}} 数据
-  shell: $HOME/backup/install.sh -e {{client_id}},{{client_secret}},{{tenant_id}},{{localFilePath}},{{oneDrivePath}},{{backup_soft_name}}
+  shell: $HOME/data/install.sh -e {{client_id}},{{client_secret}},{{tenant_id}},{{localFilePath}},{{oneDrivePath}},{{backup_soft_name}}
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+
+
+- name: 安装 {{backup_soft_name}}
+  shell: docker compose -f $HOME/data/{{backup_soft_name}}/docker-compose.yaml up -d
+  register: my_output # <- Registers the command output.
+  changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+
+- name: 添加定时备份
+  include_tasks: cronbackup.yaml
