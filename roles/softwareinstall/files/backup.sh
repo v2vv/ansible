@@ -13,7 +13,7 @@ file=""
 
 # 显示帮助信息
 show_help() {
-    echo "Usage: $0 [-o option] [-e client_id,client_secret,tenant_id,localFilePath,oneDriveBackupFolder,backup_soft_name]"
+    echo "Usage: $0 [-o option] [-e client_id,client_secret,tenant_id,localPath,oneDriveBackupFolder,backup_soft_name]"
     echo ""
     echo "  -o  选择备份软件"
     echo "      1 - alist"
@@ -22,7 +22,7 @@ show_help() {
     echo "      4 - uptime-kuma"
     echo ""
     echo "  -e  提供 OneDrive 备份的详细信息，用逗号分隔"
-    echo "      client_id,client_secret,tenant_id,localFilePath,oneDriveBackupFolder,backup_soft_name"
+    echo "      client_id,client_secret,tenant_id,localPath,oneDriveBackupFolder,backup_soft_name"
     echo ""
     echo "  -h  显示此帮助信息"
 }
@@ -58,7 +58,7 @@ while getopts ":o:e:h" opt; do
             ;;
         e )
             # 处理 -e 选项
-            IFS=',' read -r client_id client_secret tenant_id localFilePath oneDriveBackupFolder backup_soft_name <<< "$OPTARG"
+            IFS=',' read -r client_id client_secret tenant_id localPath oneDriveBackupFolder backup_soft_name <<< "$OPTARG"
             ;;
         h )
             show_help
@@ -86,9 +86,12 @@ NC='\033[0m' # 恢复默认颜色
 # client_id=$1
 # client_secret=$2
 # tenant_id=$3
-# localFilePath=$4
+# localPath=$4
 # oneDriveBackupFolder=$5
 # backup_soft_name=$6
+
+localPath="~/data"
+oneDriveBackupFolder="文档/backup"
 
 alist_config_Path='alist/config.json'
 alist_data_path='alist/data.db'
@@ -104,7 +107,7 @@ semaphore_composefile_path='semaphore/docker-compose.yaml'
 uptimekuma_composefile_path='uptime-kuma/docker-compose.yaml'
 uptimekuma_database_path='uptime-kuma/kuma.db'
 
-echo "localFilePath $localFilePath"
+echo "localPath $localPath"
 echo "oneDriveBackupFolder $oneDriveBackupFolder"
 # echo $client_id
 # echo $client_secret
@@ -203,7 +206,7 @@ urlencode() {
     echo $src_url
 }
 
-# $1 localFilePath
+# $1 localPath
 # $2 oneDrivePath 
 upload(){
     echo 上传文件$1 到 oneDrive $2
@@ -228,11 +231,11 @@ upload(){
 
 alist_backup(){
     # 上传 alist
-    if [[ -e $localFilePath/$alist_config_Path ]]; then
+    if [[ -e $localPath/$alist_config_Path ]]; then
         echo "alist Backup File exists."
-        upload $localFilePath/$alist_config_Path $(urlencode $oneDriveBackupFolder)/$alist_config_Path
-        upload $localFilePath/$alist_data_path $(urlencode $oneDriveBackupFolder)/$alist_data_path
-        upload $localFilePath/$alist_composefile_path $(urlencode $oneDriveBackupFolder)/$alist_composefile_path
+        upload $localPath/$alist_config_Path $(urlencode $oneDriveBackupFolder)/$alist_config_Path
+        upload $localPath/$alist_data_path $(urlencode $oneDriveBackupFolder)/$alist_data_path
+        upload $localPath/$alist_composefile_path $(urlencode $oneDriveBackupFolder)/$alist_composefile_path
     else
         echo -e "${YELLOW}alist Backup File does not exist.${NC}"
         # echo "alist Backup File does not exist."
@@ -241,29 +244,29 @@ alist_backup(){
 
 ddns_go_backup(){
     # 上传 ddns-go
-    if [[ -e $localFilePath/$ddnsgo_config_path ]]; then
+    if [[ -e $localPath/$ddnsgo_config_path ]]; then
         echo "ddns-go Backup File exists."
         stoprunning $backup_soft_name
         # echo $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
-        # upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
+        # upload $localPath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
         # echo $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
-        # upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
-        upload $localFilePath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
-        upload $localFilePath/$ddnsgo_composefile_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path
-        docker_run $localFilePath/$semaphore_composefile_path
+        # upload $localPath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
+        upload $localPath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
+        upload $localPath/$ddnsgo_composefile_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path
+        docker_run $localPath/$semaphore_composefile_path
     else
-        echo -e "${YELLOW}ddns-go Backup File $localFilePath/$ddnsgo_config_path does not exist.${NC}"
+        echo -e "${YELLOW}ddns-go Backup File $localPath/$ddnsgo_config_path does not exist.${NC}"
         # echo "ddns-go Backup File does not exist."
     fi
 }
 
 semaphore_backup(){
     # 上传 semaphore
-    if [[ -e $localFilePath/$semaphore_config_path ]]; then
+    if [[ -e $localPath/$semaphore_config_path ]]; then
         echo "semaphore Backup File exists."
-        upload $localFilePath/$semaphore_config_path $(urlencode $oneDriveBackupFolder)/$semaphore_config_path
-        upload $localFilePath/$semaphore_database_path $(urlencode $oneDriveBackupFolder)/$semaphore_database_path
-        upload $localFilePath/$semaphore_composefile_path $(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path
+        upload $localPath/$semaphore_config_path $(urlencode $oneDriveBackupFolder)/$semaphore_config_path
+        upload $localPath/$semaphore_database_path $(urlencode $oneDriveBackupFolder)/$semaphore_database_path
+        upload $localPath/$semaphore_composefile_path $(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path
     else
         echo -e "${YELLOW}semaphore Backup File does not exist.${NC}"
         # echo "semaphore Backup File does not exist."
@@ -272,11 +275,11 @@ semaphore_backup(){
 
 uptime_kuma_backup(){
     # 上传 semaphore
-    if [[ -e $localFilePath/$uptimekuma_composefile_path ]]; then
+    if [[ -e $localPath/$uptimekuma_composefile_path ]]; then
         echo "uptime-kuma Backup File exists."
-        upload $localFilePath/$uptimekuma_composefile_path $(urlencode $oneDriveBackupFolder)/$uptimekuma_composefile_path
-        upload $localFilePath/$uptimekuma_database_path $(urlencode $oneDriveBackupFolder)/$uptimekuma_database_path
-        # upload $localFilePath/$semaphore_composefile_path $(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path
+        upload $localPath/$uptimekuma_composefile_path $(urlencode $oneDriveBackupFolder)/$uptimekuma_composefile_path
+        upload $localPath/$uptimekuma_database_path $(urlencode $oneDriveBackupFolder)/$uptimekuma_database_path
+        # upload $localPath/$semaphore_composefile_path $(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path
     else
         echo -e "${YELLOW}uptime-kuma Backup File does not exist.${NC}"
     fi

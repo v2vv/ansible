@@ -13,7 +13,7 @@ file=""
 
 # 显示帮助信息
 show_help() {
-    echo "Usage: $0 [-o option] [-e client_id,client_secret,tenant_id,localFilePath,oneDriveBackupFolder,backup_soft_name]"
+    echo "Usage: $0 [-o option] [-e client_id,client_secret,tenant_id,backup_soft_name]"
     echo ""
     echo "  -o  选择备份软件"
     echo "      1 - alist"
@@ -89,6 +89,9 @@ system_env=""
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m' # 黄色
 NC='\033[0m' # 恢复默认颜色
+
+localPath="~/data"
+oneDriveBackupFolder="文档/backup"
 
 alist_config_Path='alist/config.json'
 alist_data_path='alist/data.db'
@@ -228,12 +231,12 @@ alist_restore(){
     # 检查 alist 容器是否在运行
     stoprunning alist
     mkdir -p alist
-    download "$localFilePath/$alist_config_Path" "$(urlencode $oneDriveBackupFolder)/$alist_config_Path"
-    download "$localFilePath/$alist_data_path" "$(urlencode $oneDriveBackupFolder)/$alist_data_path"
-    download "$localFilePath/$alist_composefile_path" "$(urlencode $oneDriveBackupFolder)/$alist_composefile_path"
+    download "$localPath/$alist_config_Path" "$(urlencode $oneDriveBackupFolder)/$alist_config_Path"
+    download "$localPath/$alist_data_path" "$(urlencode $oneDriveBackupFolder)/$alist_data_path"
+    download "$localPath/$alist_composefile_path" "$(urlencode $oneDriveBackupFolder)/$alist_composefile_path"
     # echo "开始运行 alist 容器"
-    docker_run $localFilePath/$alist_composefile_path
-    # docker compose -f "$localFilePath/$alist_composefile_path" up -d
+    docker_run $localPath/$alist_composefile_path
+    # docker compose -f "$localPath/$alist_composefile_path" up -d
 }
 
 ddns_go_restore(){
@@ -241,11 +244,11 @@ ddns_go_restore(){
     # 检查 ddns-go 容器是否存在
     stoprunning ddns-go
     mkdir -p ddns-go
-    download "$localFilePath/$ddnsgo_config_path" "$(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path"
-    download "$localFilePath/$ddnsgo_composefile_path" "$(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path"
+    download "$localPath/$ddnsgo_config_path" "$(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path"
+    download "$localPath/$ddnsgo_composefile_path" "$(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path"
     echo "开始运行 ddns-go 容器"
-    docker_run $localFilePath/$ddnsgo_composefile_path
-    # docker compose -f "$localFilePath/$ddnsgo_composefile_path" up -d
+    docker_run $localPath/$ddnsgo_composefile_path
+    # docker compose -f "$localPath/$ddnsgo_composefile_path" up -d
 }
 
 semaphore_restore(){
@@ -253,24 +256,24 @@ semaphore_restore(){
     # 检查 semaphore 容器是否在运行
     stoprunning semaphore
     mkdir -p semaphore
-    download "$localFilePath/$semaphore_config_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_config_path"
-    download "$localFilePath/$semaphore_database_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_database_path"
-    download "$localFilePath/$semaphore_composefile_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path"
-    # 授予 "$localFilePath/$semaphore_database_path" 访问权限
-    chmod 666 "$localFilePath/$semaphore_database_path"
+    download "$localPath/$semaphore_config_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_config_path"
+    download "$localPath/$semaphore_database_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_database_path"
+    download "$localPath/$semaphore_composefile_path" "$(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path"
+    # 授予 "$localPath/$semaphore_database_path" 访问权限
+    chmod 666 "$localPath/$semaphore_database_path"
     echo "开始运行 semaphore 容器"
-    docker_run $localFilePath/$semaphore_composefile_path
-    # docker compose -f "$localFilePath/$semaphore_composefile_path" up -d
+    docker_run $localPath/$semaphore_composefile_path
+    # docker compose -f "$localPath/$semaphore_composefile_path" up -d
 }
 
 uptime_kuma_restore(){
     stoprunning uptime-kuma
     mkdir -p uptime-kuma
-    download "$localFilePath/$uptimekuma_composefile_path" "$(urlencode $oneDriveBackupFolder)/$uptimekuma_composefile_path"
-    download "$localFilePath/$uptimekuma_database_path" "$(urlencode $oneDriveBackupFolder)/$uptimekuma_database_path"
-    # download "$localFilePath/$uptimekuma_composefile_path" "$(urlencode $oneDriveBackupFolder)/$uptimekuma_composefile_path"
+    download "$localPath/$uptimekuma_composefile_path" "$(urlencode $oneDriveBackupFolder)/$uptimekuma_composefile_path"
+    download "$localPath/$uptimekuma_database_path" "$(urlencode $oneDriveBackupFolder)/$uptimekuma_database_path"
+    # download "$localPath/$uptimekuma_composefile_path" "$(urlencode $oneDriveBackupFolder)/$uptimekuma_composefile_path"
     echo "开始运行 semaphore 容器"
-    docker_run $localFilePath/$uptimekuma_composefile_path
+    docker_run $localPath/$uptimekuma_composefile_path
 }
 
 restore(){
