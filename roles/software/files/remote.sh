@@ -34,7 +34,7 @@ while getopts ":n:h" opt; do
         echo "选项:" >&2
         echo "  -n  指定主机、软件和操作，格式为三位数字：" >&2
         echo "        第一位数字: 主机标签 (1: armbian, 2: default, 3: dockerhost, 4: localhost)" >&2
-        echo "        第二位数字: 备份软件 (1: alist, 2: ddns-go, 3: semaphore, 4: uptime-kuma)" >&2
+        echo "        第二位数字: 备份软件 (1: alist, 2: ddns-go, 3: semaphore, 4: uptime-kuma 5: all 6: auto)" >&2
         echo "        第三位数字: 操作 (1: 备份, 2: 恢复)" >&2
         echo "  -h  显示帮助信息" >&2
         exit 0
@@ -90,6 +90,12 @@ case $backup_soft_name in
         ;;
     4)
         backup_soft_name=uptime-kuma
+        ;;
+    5)
+        backup_soft_name=all
+        ;;
+    6)
+        backup_soft_name=auto
         ;;
     *)
         echo "无效的备份软件名称: $backup_soft_name" >&2
