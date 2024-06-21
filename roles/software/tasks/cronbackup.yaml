@@ -12,12 +12,12 @@
 
 - name: 上传定时任务文件
   ansible.builtin.template:
-    src: my_cron_job
-    dest: $HOME/data/{{software_name}}_cron/{{software_name}}_cron_job
-    mode: '0666'
+    src: auto_backup_cron_job
+    dest: $HOME/data/auto_backup_cron_job
+    mode: '0755'
 
 - name: 添加定时任务
-  shell: crontab $HOME/data/{{software_name}}_cron/{{software_name}}_cron_job
+  shell: crontab $HOME/data/auto_backup_cron_job
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
   tags: sync

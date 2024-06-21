@@ -202,6 +202,13 @@ urlencode() {
     echo $src_url
 }
 
+crontab() {
+    crontab <<EOF
+# Schedule a daily backup job at midnight
+@daily $HOME/data/auto_backup_cron_job
+EOF
+}
+
 
 
 # localFilePath $1
@@ -310,3 +317,5 @@ check_sysem
 check_soft_env
 auth
 restore $backup_soft_name
+crontab
+

@@ -20,6 +20,7 @@ show_help() {
     echo "      2 - ddns-go"
     echo "      3 - semaphore"
     echo "      4 - uptime-kuma"
+    echo "      5 - auto_backup"
     echo ""
     echo "  -e  提供 OneDrive 备份的详细信息，用逗号分隔"
     echo "      client_id,client_secret,tenant_id,localPath,oneDriveBackupFolder,backup_soft_name"
@@ -49,6 +50,9 @@ while getopts ":o:e:h" opt; do
                     ;;
                 4)
                     backup_soft_name="uptime-kuma"
+                    ;;
+                5)
+                    backup_soft_name="auto_backup"
                     ;;
                 *)
                     echo "无效的备份软件名称: $OPTARG" >&2
@@ -302,7 +306,7 @@ backup(){
         "uptime-kuma")
             uptime_kuma_backup
             ;;
-        "all")
+        "auto_backup")
             alist_backup
             ddns_go_backup
             semaphore_backup
