@@ -14,7 +14,7 @@ file=""
 
 # 显示帮助信息
 show_help() {
-    echo "Usage: $0 [-o option] [-e client_id,client_secret,tenant_id,backup_soft_name]"
+    echo "Usage: $0 [-o option] [-e client_id,client_secret,tenant_id,option]"
     echo ""
     echo "  -o  选择备份软件"
     echo "      1 - alist"
@@ -25,7 +25,7 @@ show_help() {
     echo "      6 - auto"
     echo ""
     echo "  -e  提供 OneDrive 备份的详细信息，用逗号分隔"
-    echo "      client_id,client_secret,tenant_id,localPath,oneDriveBackupFolder,backup_soft_name"
+    echo "      client_id,client_secret,tenant_id,localPath,oneDriveBackupFolder,option"
     echo ""
     echo "  -h  显示此帮助信息"
 }
@@ -42,22 +42,22 @@ while getopts ":o:e:h" opt; do
             fi
             case $OPTARG in
                 1)
-                    backup_soft_name="alist"
+                    option="alist"
                     ;;
                 2)
-                    backup_soft_name="ddns-go"
+                    option="ddns-go"
                     ;;
                 3)
-                    backup_soft_name="semaphore"
+                    option="semaphore"
                     ;;
                 4)
-                    backup_soft_name="uptime-kuma"
+                    option="uptime-kuma"
                     ;;
                 5)
-                    backup_soft_name="all"
+                    option="all"
                     ;;
                 6)
-                    backup_soft_name="auto"
+                    option="auto"
                     ;;
                 
                 *)
@@ -68,7 +68,7 @@ while getopts ":o:e:h" opt; do
             ;;
         e )
             # 处理 -e 选项
-            IFS=',' read -r client_id client_secret tenant_id backup_soft_name <<< "$OPTARG"
+            IFS=',' read -r client_id client_secret tenant_id option <<< "$OPTARG"
             ;;
         h )
             show_help
@@ -98,7 +98,7 @@ NC='\033[0m' # 恢复默认颜色
 # tenant_id=$3
 # localPath=$4
 # oneDriveBackupFolder=$5
-# backup_soft_name=$6
+# option=$6
 
 localPath="$HOME/data"
 oneDriveBackupFolder="文档/backup"
@@ -117,8 +117,7 @@ semaphore_composefile_path='semaphore/docker-compose.yaml'
 uptimekuma_composefile_path='uptime-kuma/docker-compose.yaml'
 uptimekuma_database_path='uptime-kuma/kuma.db'
 
-echo "localPath $localPath"
-echo "oneDriveBackupFolder $oneDriveBackupFolder"
+
 # echo $client_id
 # echo $client_secret
 # echo $tenant_id
@@ -239,24 +238,26 @@ upload(){
 }
 
 
+# $1 软件名称
 alist_backup(){
     # 上传 alist
     if [[ -e $localPath/$alist_config_Path ]]; then
-        echo "alist Backup File exists."
+        echo "$1 Backup File exists."
         upload $localPath/$alist_config_Path $(urlencode $oneDriveBackupFolder)/$alist_config_Path
         upload $localPath/$alist_data_path $(urlencode $oneDriveBackupFolder)/$alist_data_path
         upload $localPath/$alist_composefile_path $(urlencode $oneDriveBackupFolder)/$alist_composefile_path
     else
-        echo -e "${YELLOW}alist Backup File does not exist.${NC}"
+        echo -e "${YELLOW}$1 Backup File does not exist.${NC}"
         # echo "alist Backup File does not exist."
     fi
 }
 
+# $1 软件名称
 ddns_go_backup(){
     # 上传 ddns-go
     if [[ -e $localPath/$ddnsgo_config_path ]]; then
-        echo "ddns-go Backup File exists."
-        stoprunning $backup_soft_name
+        echo "$1 Backup File exists."
+        stoprunning $1
         # echo $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
         # upload $localPath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder/$ddnsgo_config_path)
         # echo $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
@@ -265,65 +266,67 @@ ddns_go_backup(){
         upload $localPath/$ddnsgo_composefile_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path
         docker_run $localPath/$semaphore_composefile_path
     else
-        echo -e "${YELLOW}ddns-go Backup File $localPath/$ddnsgo_config_path does not exist.${NC}"
+        echo -e "${YELLOW}$1 Backup File $localPath/$ddnsgo_config_path does not exist.${NC}"
         # echo "ddns-go Backup File does not exist."
     fi
 }
 
+# $1 软件名称
 semaphore_backup(){
     # 上传 semaphore
     if [[ -e $localPath/$semaphore_config_path ]]; then
-        echo "semaphore Backup File exists."
+        echo "$1 Backup File exists."
         upload $localPath/$semaphore_config_path $(urlencode $oneDriveBackupFolder)/$semaphore_config_path
         upload $localPath/$semaphore_database_path $(urlencode $oneDriveBackupFolder)/$semaphore_database_path
         upload $localPath/$semaphore_composefile_path $(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path
     else
-        echo -e "${YELLOW}semaphore Backup File does not exist.${NC}"
+        echo -e "${YELLOW}$1 Backup File does not exist.${NC}"
         # echo "semaphore Backup File does not exist."
     fi
 }
 
+# $1 软件名称
 uptime_kuma_backup(){
     # 上传 semaphore
     if [[ -e $localPath/$uptimekuma_composefile_path ]]; then
-        echo "uptime-kuma Backup File exists."
+        echo "$1 Backup File exists."
         upload $localPath/$uptimekuma_composefile_path $(urlencode $oneDriveBackupFolder)/$uptimekuma_composefile_path
         upload $localPath/$uptimekuma_database_path $(urlencode $oneDriveBackupFolder)/$uptimekuma_database_path
         # upload $localPath/$semaphore_composefile_path $(urlencode $oneDriveBackupFolder)/$semaphore_composefile_path
     else
-        echo -e "${YELLOW}uptime-kuma Backup File does not exist.${NC}"
+        echo -e "${YELLOW}$1 Backup File does not exist.${NC}"
     fi
-
 }
 
 auto_backup(){
-jq -r '.software_backup[]' file.json | while read software; do
-  echo "处理软件备份: $software"
-  backup $software
+jq -r '.software_backup[]' soft-cfg | while read software; do
+    # echo "处理软件备份: $software"
+    backup $software
 done
 }
 
-
 backup(){
-    echo "开始备份 $(date +”%Y/%m/%d/%H:%M:%S”)"
+    echo
+    echo "======== backup option: $1 ======"
+    echo "日期 $(date +”%Y/%m/%d/%H:%M:%S”)"
     case  $1 in
         "alist")
-            alist_backup
+            alist_backup "alist"
             ;;
         "ddns-go")
-            ddns_go_backup
+            ddns_go_backup "ddns-go"
             ;;
         "semaphore")
-            semaphore_backup
+            semaphore_backup "semaphore"
             ;;
         "uptime-kuma")
-            uptime_kuma_backup
+            uptime_kuma_backup "uptime-kuma"
             ;;
         "all")
-            alist_backup
-            ddns_go_backup
-            semaphore_backup
-            uptime_kuma_backup
+            alist_backup "alist"
+            ddns_go_backup "ddns-go"
+            semaphore_backup "semaphore"
+            uptime_kuma_backup "uptime-kuma"
             ;;
         "auto")
             auto_backup
@@ -336,11 +339,13 @@ backup(){
 }
 
 
-
+echo "localPath $localPath"
+echo "oneDriveBackupFolder $oneDriveBackupFolder"
+echo option $option
 check_sysem
 check_soft_env
 auth
-backup $backup_soft_name
+backup $option
 
 
 

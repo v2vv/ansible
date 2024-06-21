@@ -311,7 +311,7 @@ uptime_kuma_restore(){
 }
 
 restore(){
-    echo '开始恢复或安装'
+    echo '开始安装'
     case $1 in
         "alist")
             alist_restore
