@@ -50,6 +50,9 @@ while getopts ":o:e:h" opt; do
                 4)
                     backup_soft_name="uptime-kuma"
                     ;;
+                4)
+                    backup_soft_name="all"
+                    ;;
                 *)
                     echo "无效的备份软件名称: $OPTARG" >&2
                     exit 1
@@ -202,12 +205,33 @@ urlencode() {
     echo $src_url
 }
 
-crontab() {
-    crontab <<EOF
-# Schedule a daily backup job at midnight
-@daily $HOME/data/auto_backup_cron_job
-EOF
+
+crontab_backup() {
+    pwd
+    # 判断文件是否存在
+    if [ -e "./soft-cfg" ]; then
+        echo "soft-cfg 文件存在。"
+    else
+        echo "文件不存在。"
+        echo '{}' | jq '. += {"software_backup": []}' > ./soft-cfg
+        cat soft-cfg
+    fi
+
+    jq ".software_backup |= if index(\"$backup_soft_name\") == null then . + [\"$backup_soft_name\"] else . end" soft-cfg > temp.json && mv temp.json soft-cfg
+    cat soft-cfg
+    # 新任务内容
+    new_task="@daily $HOME/data/backup.sh $client_id $client_secret $tenant_id -o auto >> $HOME/data/cron_backup_log/auto_cron_backup_script.log 2>&1"
+    # echo $new_task
+    # 检查新任务是否已存在
+    if crontab -l | grep -Eq "$new_task"; then
+        echo "任务已存在，无需重复添加。"
+    else
+        # 添加新任务
+        (crontab -l 2>/dev/null; echo "$new_task") | crontab -
+        echo "新任务已添加。"
+    fi
 }
+
 
 
 
@@ -317,5 +341,5 @@ check_sysem
 check_soft_env
 auth
 restore $backup_soft_name
-crontab
+crontab_backup
 

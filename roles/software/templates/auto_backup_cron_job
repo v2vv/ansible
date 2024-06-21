@@ -1,1 +1,0 @@
-0 0 * * * $HOME/backup/backup.sh -e {{client_id}},{{client_secret}},{{tenant_id}},{{software_name}} >> $HOME/data/cron_backup_log/{{software_name}}_cron_backup_script.log 2>&1

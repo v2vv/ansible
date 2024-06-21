@@ -11,6 +11,7 @@ verbose=0
 file=""
 
 
+
 # 显示帮助信息
 show_help() {
     echo "Usage: $0 [-o option] [-e client_id,client_secret,tenant_id,backup_soft_name]"
@@ -20,7 +21,8 @@ show_help() {
     echo "      2 - ddns-go"
     echo "      3 - semaphore"
     echo "      4 - uptime-kuma"
-    echo "      5 - auto_backup"
+    echo "      5 - all"
+    echo "      6 - auto"
     echo ""
     echo "  -e  提供 OneDrive 备份的详细信息，用逗号分隔"
     echo "      client_id,client_secret,tenant_id,localPath,oneDriveBackupFolder,backup_soft_name"
@@ -52,8 +54,12 @@ while getopts ":o:e:h" opt; do
                     backup_soft_name="uptime-kuma"
                     ;;
                 5)
-                    backup_soft_name="auto_backup"
+                    backup_soft_name="all"
                     ;;
+                6)
+                    backup_soft_name="auto"
+                    ;;
+                
                 *)
                     echo "无效的备份软件名称: $OPTARG" >&2
                     exit 1
@@ -290,6 +296,13 @@ uptime_kuma_backup(){
 
 }
 
+auto_backup(){
+jq -r '.software_backup[]' file.json | while read software; do
+  echo "处理软件备份: $software"
+  backup $software
+done
+}
+
 
 backup(){
     echo "开始备份 $(date +”%Y/%m/%d/%H:%M:%S”)"
@@ -306,11 +319,14 @@ backup(){
         "uptime-kuma")
             uptime_kuma_backup
             ;;
-        "auto_backup")
+        "all")
             alist_backup
             ddns_go_backup
             semaphore_backup
             uptime_kuma_backup
+            ;;
+        "auto")
+            auto_backup
             ;;
         *)
             echo "未匹配到任何备份名"

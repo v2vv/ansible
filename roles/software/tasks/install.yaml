@@ -20,6 +20,3 @@
   shell: docker compose -f $HOME/data/{{software_name}}/docker-compose.yaml up -d
   register: my_output # <- Registers the command output.
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
-
-- name: 添加定时备份
-  include_tasks: cronbackup.yaml
