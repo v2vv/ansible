@@ -223,6 +223,7 @@ crontab_backup() {
     jq ".software_backup |= if index(\"$backup_soft_name\") == null then . + [\"$backup_soft_name\"] else . end" soft-cfg > temp.json && mv temp.json soft-cfg
     cat soft-cfg
     # 新任务内容
+    mkdir -p $HOME/data/cron_backup_log
     new_task="@daily $HOME/data/backup.sh $client_id $client_secret $tenant_id -o auto >> $HOME/data/cron_backup_log/auto_cron_backup_script.log 2>&1"
     # echo $new_task
     # 检查新任务是否已存在
