@@ -264,7 +264,7 @@ ddns_go_backup(){
         # upload $localPath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
         upload $localPath/$ddnsgo_config_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_config_path
         upload $localPath/$ddnsgo_composefile_path $(urlencode $oneDriveBackupFolder)/$ddnsgo_composefile_path
-        docker_run $localPath/$semaphore_composefile_path
+        docker_run $localPath/$ddnsgo_composefile_path
     else
         echo -e "${YELLOW}$1 Backup File $localPath/$ddnsgo_config_path does not exist.${NC}"
         # echo "ddns-go Backup File does not exist."

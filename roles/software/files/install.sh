@@ -53,6 +53,7 @@ while getopts ":o:e:h" opt; do
                     ;;
                 5)
                     backup_soft_name="all"
+                    ;;
                 6)
                     backup_soft_name="auto"
                     ;;
@@ -224,7 +225,7 @@ crontab_backup() {
     cat soft-cfg
     # 新任务内容
     mkdir -p $HOME/data/cron_backup_log
-    new_task="@daily $HOME/data/backup.sh $client_id $client_secret $tenant_id -o auto >> $HOME/data/cron_backup_log/auto_cron_backup_script.log 2>&1"
+    new_task="@daily $HOME/data/backup.sh -e $client_id,$client_secret,$tenant_id,auto >> $HOME/data/cron_backup_log/auto_cron_backup_script.log 2>&1"
     # echo $new_task
     # 检查新任务是否已存在
     if crontab -l | grep -Eq "$new_task"; then
