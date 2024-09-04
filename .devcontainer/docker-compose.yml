@@ -4,4 +4,3 @@ services:
     image: "honyua/ansible_py:v0.4"
     volumes:
       - ../..:/workspaces:cached
-    network_mode: "host"

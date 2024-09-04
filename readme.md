@@ -67,12 +67,3 @@ ansible-playbook -i hosts  playbooks.yaml -vv --tags hello
 ansible-playbook -i hosts  playbooks.yaml -vv --tags install_semaphore --extra-vars "password=changeme"
 ansible-playbook -i hosts  playbooks.yaml -vv --tags install_ddns-go --extra-vars "ddns-go_pwd=changeme cloudfare_token=token"
 ```
-4. 指定主机命令
-```shell
-# 默认主机
-ansible-playbook -i hosts -e "host=default" playbooks.yaml -vvv --tags hello
-ansible-playbook -i hosts -e "host=default" playbooks.yaml -vv --tags hello
-# 本地主机
-ansible-playbook -i hosts -e "host=default" playbooks.yaml -vvv --tags hello
-ansible-playbook -i hosts -e "host=default" playbooks.yaml -vv --tags hello
-```
