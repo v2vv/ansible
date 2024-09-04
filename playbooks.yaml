@@ -1,6 +1,6 @@
 ---
 - name: Hello
-  hosts: ungrouped
+  hosts: default
   remote_user: root
   roles:
     - role: hello
@@ -15,8 +15,17 @@
     - role: vscodeTunnel
       tags: vscodetunnel
 
-    - role: software
-      tags: software
+    - role: alist
+      tags: install_alist
+
+    - role: ddns-go
+      tags: install_ddns-go
+
+    - role: semaphore
+      tags: install_semaphore
+
+    - role: backup
+      tags: backup
 
   # tasks:
   #   - name: Import the example
