@@ -1,3 +1,6 @@
 ansible.log
-hosts
+*hosts
 tmp
+.ipynb_checkpoints
+*.env
+*env.json
