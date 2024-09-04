@@ -176,6 +176,9 @@ source .env
 sshcommand $hostname $hostuser $hostpw "mkdir -p data"
 # 复制文件到远程服务器
 scpcommand $hostname $hostuser $hostpw backup.sh install.sh data
+# 给 backup.sh install.sh 增加执行权限
+sshcommand $hostname $hostuser $hostpw "chmod +x ~/data/backup.sh && chmod +x ~/data/install.sh"
 # 执行操作命令
-sshcommand $hostname $hostuser $hostpw "chmod +x ~/data/$script && ~/data/$script -e $client_id,$client_secret,$tenant_id,$backup_soft_name"
+sshcommand $hostname $hostuser $hostpw "~/data/$script -e $client_id,$client_secret,$tenant_id,$option"
+
 
