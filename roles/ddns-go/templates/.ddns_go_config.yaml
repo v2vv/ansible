@@ -1,0 +1,31 @@
+dnsconf:
+    - ipv4:
+        enable: false
+        gettype: netInterface
+        url: https://myip4.ipip.net,https://ddns.oray.com/checkip,https://ip.3322.net,https://4.ipw.cn
+        netinterface: eth0
+        cmd: ""
+        domains:
+            - ""
+      ipv6:
+        enable: true
+        gettype: netInterface
+        url: https://speed.neu6.edu.cn/getIP.php,https://v6.ident.me,https://6.ipw.cn
+        netinterface: eth0
+        cmd: ""
+        ipv6reg: ""
+        domains:
+            - home.lvhongyuan.site
+      dns:
+        name: cloudflare
+        id: ""
+        secret: {{cloudflare_token}}
+      ttl: ""
+user:
+    username: admin
+    password: {{ddns_go_password}}
+webhook:
+    webhookurl: ""
+    webhookrequestbody: ""
+    webhookheaders: ""
+notallowwanaccess: false

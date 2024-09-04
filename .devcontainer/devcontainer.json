@@ -2,13 +2,5 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "devcontainer",
   "workspaceFolder": "/workspaces/ansible",
-  "postAttachCommand": "chmod u+x,g-wx,o-wx ../ansible",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "ms-toolsai.jupyter",
-        "ms-python.python"
-      ]
-    }
-  }
+  "postAttachCommand": "chmod u+x,g-wx,o-wx ../ansible"
 }
